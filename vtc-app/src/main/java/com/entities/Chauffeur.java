@@ -36,6 +36,10 @@ public class Chauffeur implements Serializable {
     private String prenom;
     
     @NotEmpty
+    @DateTimeFormat(pattern= "yyyy-MM-dd")
+    private Date dateNaissance;
+    
+    @NotEmpty
     private String numeroCarteChauffeur;
     
     @NotEmpty
@@ -66,18 +70,20 @@ public class Chauffeur implements Serializable {
         
     }
 
-    public Chauffeur(String nom, String prenom, String numeroCarteChauffeur, String telephone, Byte[] photo, Date dateInscription, String statut, String email, Collection<Adresse> adresses, Collection<Voiture> voitures) {
+    public Chauffeur(String nom, String prenom, Date dateNaissance, String numeroCarteChauffeur, String telephone, Date dateInscription, String statut, String email, Collection<Adresse> adresses) {
         this.nom = nom;
         this.prenom = prenom;
+        this.dateNaissance = dateNaissance;
         this.numeroCarteChauffeur = numeroCarteChauffeur;
         this.telephone = telephone;
-        this.photo = photo;
         this.dateInscription = dateInscription;
         this.statut = statut;
         this.email = email;
         this.adresses = adresses;
-        this.voitures = voitures;
     }
+
+   
+    
 
     public Long getIdChauffeur() {
         return idChauffeur;
@@ -182,6 +188,15 @@ public class Chauffeur implements Serializable {
     public void setVoitures(Collection<Voiture> voitures) {
         this.voitures = voitures;
     }
+
+    public Date getDateNaissance() {
+        return dateNaissance;
+    }
+
+    public void setDateNaissance(Date dateNaissance) {
+        this.dateNaissance = dateNaissance;
+    }
+    
     
     
 }

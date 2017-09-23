@@ -35,10 +35,16 @@ public class Client implements Serializable {
     @Size(min=4, max=100)
     private String prenom;
     
+    @NotEmpty
+    @DateTimeFormat(pattern="yyyy-MM-dd")
+    private Date dateNaissance;
+    
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date dateInscription;
     private String telephone;
     private String statut;
+    
+    @Size(min=1, max=1)
     private String genre;
     
     @NotEmpty
@@ -54,9 +60,10 @@ public class Client implements Serializable {
     public Client() {
     }
 
-    public Client(String nom, String prenom, Date dateInscription, String telephone, String statut, String genre, String email, Collection<Adresse> adresses) {
+    public Client(String nom, String prenom, Date dateNaissance, Date dateInscription, String telephone, String statut, String genre, String email, Collection<Adresse> adresses) {
         this.nom = nom;
         this.prenom = prenom;
+        this.dateNaissance = dateNaissance;
         this.dateInscription = dateInscription;
         this.telephone = telephone;
         this.statut = statut;
@@ -64,6 +71,8 @@ public class Client implements Serializable {
         this.email = email;
         this.adresses = adresses;
     }
+
+   
 
     public Long getIdClient() {
         return idClient;
@@ -143,6 +152,14 @@ public class Client implements Serializable {
 
     public void setCommandes(Collection<Commande> commandes) {
         this.commandes = commandes;
+    }
+
+    public Date getDateNaissance() {
+        return dateNaissance;
+    }
+
+    public void setDateNaissance(Date dateNaissance) {
+        this.dateNaissance = dateNaissance;
     }
     
     
