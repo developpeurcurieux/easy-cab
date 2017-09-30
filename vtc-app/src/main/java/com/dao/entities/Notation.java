@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-package com.entities;
+package com.dao.entities;
 
 import java.io.Serializable;
 import javax.persistence.Entity;
@@ -16,40 +16,50 @@ import javax.persistence.OneToOne;
 
 
 
-@Entity
-public class Commentaire implements Serializable {
+@Entity 
+public class Notation implements Serializable {
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
-    private Long idCommentaire;
+    private Long idNotation;
     
-    private String champLibre;
+    private double note;
+    private String commentaire;
     
     @OneToOne
     @JoinColumn(name="FK_ligneCommande")
     private LigneCommande ligneCommande;
 
-    public Commentaire() {
+    public Notation() {
     }
 
-    public Commentaire(String champLibre, LigneCommande ligneCommande) {
-        this.champLibre = champLibre;
+    public Notation(double note, String commentaire, LigneCommande ligneCommande) {
+        this.note = note;
+        this.commentaire = commentaire;
         this.ligneCommande = ligneCommande;
     }
 
-    public Long getIdCommentaire() {
-        return idCommentaire;
+    public Long getIdNotation() {
+        return idNotation;
     }
 
-    public void setIdCommentaire(Long idCommentaire) {
-        this.idCommentaire = idCommentaire;
+    public void setIdNotation(Long idNotation) {
+        this.idNotation = idNotation;
     }
 
-    public String getChampLibre() {
-        return champLibre;
+    public double getNote() {
+        return note;
     }
 
-    public void setChampLibre(String champLibre) {
-        this.champLibre = champLibre;
+    public void setNote(double note) {
+        this.note = note;
+    }
+
+    public String getCommentaire() {
+        return commentaire;
+    }
+
+    public void setCommentaire(String commentaire) {
+        this.commentaire = commentaire;
     }
 
     public LigneCommande getLigneCommande() {

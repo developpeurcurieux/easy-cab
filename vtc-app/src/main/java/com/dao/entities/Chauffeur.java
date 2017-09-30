@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-package com.entities;
+package com.dao.entities;
 
 import java.io.Serializable;
 import java.util.Collection;
@@ -22,64 +22,75 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 
 @Entity
-public class Client implements Serializable {
+public class Chauffeur implements Serializable {
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
-    private Long idClient;
+    private Long idChauffeur;
     
     @NotEmpty
-    @Size(min=4, max=100)
+    @Size(min=1, max=100)
     private String nom;
     
     @NotEmpty
-    @Size(min=4, max=100)
+    @Size(min=1, max=100)
     private String prenom;
     
     @NotEmpty
-    @DateTimeFormat(pattern="yyyy-MM-dd")
+    @DateTimeFormat(pattern= "yyyy-MM-dd")
     private Date dateNaissance;
     
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private Date dateInscription;
-    private String telephone;
-    private String statut;
+    @NotEmpty
+    private String numeroCarteChauffeur;
     
-    @Size(min=1, max=1)
-    private String genre;
+    @NotEmpty
+    private String telephone;
+    
+    private String nomPhoto;
+    private Byte[] photo;
+    
+    @DateTimeFormat(pattern="yyyy-MM-dd")
+    private Date dateInscription;
+    
+    @DateTimeFormat(pattern="yyyy-MM-dd")
+    private Date dateSortie;
+    
+    private String statut;
     
     @NotEmpty
     @Email
     private String email;
     
-    @OneToMany(mappedBy="client")
+    @OneToMany(mappedBy="chauffeur")
     private Collection<Adresse> adresses;
     
-    @OneToMany(mappedBy="client")
-    private Collection<Commande> commandes;
+    @OneToMany(mappedBy="chauffeur")
+    private Collection<Voiture> voitures;
 
-    public Client() {
+    public Chauffeur() {
+        
     }
 
-    public Client(String nom, String prenom, Date dateNaissance, Date dateInscription, String telephone, String statut, String genre, String email, Collection<Adresse> adresses) {
+    public Chauffeur(String nom, String prenom, Date dateNaissance, String numeroCarteChauffeur, String telephone, Date dateInscription, String statut, String email, Collection<Adresse> adresses) {
         this.nom = nom;
         this.prenom = prenom;
         this.dateNaissance = dateNaissance;
-        this.dateInscription = dateInscription;
+        this.numeroCarteChauffeur = numeroCarteChauffeur;
         this.telephone = telephone;
+        this.dateInscription = dateInscription;
         this.statut = statut;
-        this.genre = genre;
         this.email = email;
         this.adresses = adresses;
     }
 
    
+    
 
-    public Long getIdClient() {
-        return idClient;
+    public Long getIdChauffeur() {
+        return idChauffeur;
     }
 
-    public void setIdClient(Long idClient) {
-        this.idClient = idClient;
+    public void setIdChauffeur(Long idChauffeur) {
+        this.idChauffeur = idChauffeur;
     }
 
     public String getNom() {
@@ -98,12 +109,12 @@ public class Client implements Serializable {
         this.prenom = prenom;
     }
 
-    public Date getDateInscription() {
-        return dateInscription;
+    public String getNumeroCarteChauffeur() {
+        return numeroCarteChauffeur;
     }
 
-    public void setDateInscription(Date dateInscription) {
-        this.dateInscription = dateInscription;
+    public void setNumeroCarteChauffeur(String numeroCarteChauffeur) {
+        this.numeroCarteChauffeur = numeroCarteChauffeur;
     }
 
     public String getTelephone() {
@@ -114,20 +125,44 @@ public class Client implements Serializable {
         this.telephone = telephone;
     }
 
+    public String getNomPhoto() {
+        return nomPhoto;
+    }
+
+    public void setNomPhoto(String nomPhoto) {
+        this.nomPhoto = nomPhoto;
+    }
+
+    public Byte[] getPhoto() {
+        return photo;
+    }
+
+    public void setPhoto(Byte[] photo) {
+        this.photo = photo;
+    }
+
+    public Date getDateInscription() {
+        return dateInscription;
+    }
+
+    public void setDateInscription(Date dateInscription) {
+        this.dateInscription = dateInscription;
+    }
+
+    public Date getDateSortie() {
+        return dateSortie;
+    }
+
+    public void setDateSortie(Date dateSortie) {
+        this.dateSortie = dateSortie;
+    }
+
     public String getStatut() {
         return statut;
     }
 
     public void setStatut(String statut) {
         this.statut = statut;
-    }
-
-    public String getGenre() {
-        return genre;
-    }
-
-    public void setGenre(String genre) {
-        this.genre = genre;
     }
 
     public String getEmail() {
@@ -146,12 +181,12 @@ public class Client implements Serializable {
         this.adresses = adresses;
     }
 
-    public Collection<Commande> getCommandes() {
-        return commandes;
+    public Collection<Voiture> getVoitures() {
+        return voitures;
     }
 
-    public void setCommandes(Collection<Commande> commandes) {
-        this.commandes = commandes;
+    public void setVoitures(Collection<Voiture> voitures) {
+        this.voitures = voitures;
     }
 
     public Date getDateNaissance() {
@@ -164,6 +199,4 @@ public class Client implements Serializable {
     
     
     
-    
-
 }

@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-package com.entities;
+package com.dao.entities;
 
 import java.io.Serializable;
 import java.util.Collection;

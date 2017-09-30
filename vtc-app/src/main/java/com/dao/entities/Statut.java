@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-package com.entities;
+package com.dao.entities;
 
 import java.io.Serializable;
 import javax.persistence.Entity;
@@ -12,54 +12,47 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
+import javax.persistence.ManyToOne;
+import org.hibernate.validator.constraints.NotEmpty;
+
 
 
 
 @Entity 
-public class Notation implements Serializable {
+public class Statut implements Serializable {
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
-    private Long idNotation;
+    private Long idStatut;
     
-    private double note;
-    private String commentaire;
+    @NotEmpty
+    private String libelle;
     
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name="FK_ligneCommande")
     private LigneCommande ligneCommande;
 
-    public Notation() {
+    public Statut() {
     }
 
-    public Notation(double note, String commentaire, LigneCommande ligneCommande) {
-        this.note = note;
-        this.commentaire = commentaire;
+    public Statut(String libelle, LigneCommande ligneCommande) {
+        this.libelle = libelle;
         this.ligneCommande = ligneCommande;
     }
 
-    public Long getIdNotation() {
-        return idNotation;
+    public Long getIdStatut() {
+        return idStatut;
     }
 
-    public void setIdNotation(Long idNotation) {
-        this.idNotation = idNotation;
+    public void setIdStatut(Long idStatut) {
+        this.idStatut = idStatut;
     }
 
-    public double getNote() {
-        return note;
+    public String getLibelle() {
+        return libelle;
     }
 
-    public void setNote(double note) {
-        this.note = note;
-    }
-
-    public String getCommentaire() {
-        return commentaire;
-    }
-
-    public void setCommentaire(String commentaire) {
-        this.commentaire = commentaire;
+    public void setLibelle(String libelle) {
+        this.libelle = libelle;
     }
 
     public LigneCommande getLigneCommande() {
@@ -71,5 +64,4 @@ public class Notation implements Serializable {
     }
     
     
-
 }

@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-package com.entities;
+package com.dao.entities;
 
 import java.io.Serializable;
 import javax.persistence.Entity;
@@ -12,47 +12,44 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import org.hibernate.validator.constraints.NotEmpty;
+import javax.persistence.OneToOne;
 
 
 
-
-@Entity 
-public class Statut implements Serializable {
+@Entity
+public class Commentaire implements Serializable {
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
-    private Long idStatut;
+    private Long idCommentaire;
     
-    @NotEmpty
-    private String libelle;
+    private String champLibre;
     
-    @ManyToOne
+    @OneToOne
     @JoinColumn(name="FK_ligneCommande")
     private LigneCommande ligneCommande;
 
-    public Statut() {
+    public Commentaire() {
     }
 
-    public Statut(String libelle, LigneCommande ligneCommande) {
-        this.libelle = libelle;
+    public Commentaire(String champLibre, LigneCommande ligneCommande) {
+        this.champLibre = champLibre;
         this.ligneCommande = ligneCommande;
     }
 
-    public Long getIdStatut() {
-        return idStatut;
+    public Long getIdCommentaire() {
+        return idCommentaire;
     }
 
-    public void setIdStatut(Long idStatut) {
-        this.idStatut = idStatut;
+    public void setIdCommentaire(Long idCommentaire) {
+        this.idCommentaire = idCommentaire;
     }
 
-    public String getLibelle() {
-        return libelle;
+    public String getChampLibre() {
+        return champLibre;
     }
 
-    public void setLibelle(String libelle) {
-        this.libelle = libelle;
+    public void setChampLibre(String champLibre) {
+        this.champLibre = champLibre;
     }
 
     public LigneCommande getLigneCommande() {
@@ -64,4 +61,5 @@ public class Statut implements Serializable {
     }
     
     
+
 }
