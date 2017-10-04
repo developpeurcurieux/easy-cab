@@ -5,6 +5,11 @@ INSERT INTO client
 VALUES
 ('M', 'Dupont', 'Martin', '2017-09-23', '1985-04-21', 'martin-pro@gmail.com', '0605040302');
 
+INSERT INTO adresse 
+(numero, voie, complement, code_postal, ville, pays,statut, fk_client )
+VALUES 
+('12', 'Residence', NULL, '76890', 'Ennery', 'France', 'active', 1);
+
 
 INSERT INTO prix (montant)
 VALUES

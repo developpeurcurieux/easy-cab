@@ -9,6 +9,7 @@ package com.dao.entities;
 import java.io.Serializable;
 import java.util.Collection;
 import java.util.Date;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -26,6 +27,10 @@ public class Chauffeur implements Serializable {
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Long idChauffeur;
+    
+    @Column(length = 1)
+    private String genre;
+    
     
     @NotEmpty
     @Size(min=1, max=100)
@@ -70,7 +75,8 @@ public class Chauffeur implements Serializable {
         
     }
 
-    public Chauffeur(String nom, String prenom, Date dateNaissance, String numeroCarteChauffeur, String telephone, Date dateInscription, String statut, String email, Collection<Adresse> adresses) {
+    public Chauffeur(String genre, String nom, String prenom, Date dateNaissance, String numeroCarteChauffeur, String telephone, Date dateInscription, String statut, String email) {
+        this.genre = genre;
         this.nom = nom;
         this.prenom = prenom;
         this.dateNaissance = dateNaissance;
@@ -79,11 +85,7 @@ public class Chauffeur implements Serializable {
         this.dateInscription = dateInscription;
         this.statut = statut;
         this.email = email;
-        this.adresses = adresses;
     }
-
-   
-    
 
     public Long getIdChauffeur() {
         return idChauffeur;
@@ -91,6 +93,14 @@ public class Chauffeur implements Serializable {
 
     public void setIdChauffeur(Long idChauffeur) {
         this.idChauffeur = idChauffeur;
+    }
+
+    public String getGenre() {
+        return genre;
+    }
+
+    public void setGenre(String genre) {
+        this.genre = genre;
     }
 
     public String getNom() {
@@ -107,6 +117,14 @@ public class Chauffeur implements Serializable {
 
     public void setPrenom(String prenom) {
         this.prenom = prenom;
+    }
+
+    public Date getDateNaissance() {
+        return dateNaissance;
+    }
+
+    public void setDateNaissance(Date dateNaissance) {
+        this.dateNaissance = dateNaissance;
     }
 
     public String getNumeroCarteChauffeur() {
@@ -189,14 +207,6 @@ public class Chauffeur implements Serializable {
         this.voitures = voitures;
     }
 
-    public Date getDateNaissance() {
-        return dateNaissance;
-    }
-
-    public void setDateNaissance(Date dateNaissance) {
-        this.dateNaissance = dateNaissance;
-    }
-    
-    
+  
     
 }

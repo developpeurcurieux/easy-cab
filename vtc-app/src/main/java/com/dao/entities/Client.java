@@ -9,6 +9,7 @@ package com.dao.entities;
 import java.io.Serializable;
 import java.util.Collection;
 import java.util.Date;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -28,11 +29,11 @@ public class Client implements Serializable {
     private Long idClient;
     
     @NotEmpty
-    @Size(min=4, max=100)
+    @Size(min=2, max=100)
     private String nom;
     
     @NotEmpty
-    @Size(min=4, max=100)
+    @Size(min=2, max=100)
     private String prenom;
     
     @NotEmpty
@@ -44,7 +45,7 @@ public class Client implements Serializable {
     private String telephone;
     private String statut;
     
-    @Size(min=1, max=1)
+    @Column(length = 1)
     private String genre;
     
     @NotEmpty
