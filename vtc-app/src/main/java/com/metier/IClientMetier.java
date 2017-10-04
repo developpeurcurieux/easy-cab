@@ -11,7 +11,8 @@ package com.metier;
 public interface IClientMetier {
     public void commander();
     public void seConnecter();
-    public void voirSesCourses();
     public void annulerCourse();
+    public void noterChauffeur(String numeroCourse);
+    public void consulterListeCourses();
     
 }
