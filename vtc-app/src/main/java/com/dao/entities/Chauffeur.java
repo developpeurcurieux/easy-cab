@@ -25,8 +25,8 @@ import org.springframework.format.annotation.DateTimeFormat;
 @Entity
 public class Chauffeur implements Serializable {
     @Id
-    @GeneratedValue(strategy=GenerationType.IDENTITY)
-    private Long idChauffeur;
+    @NotEmpty
+    private String numeroCarteChauffeur;
     
     @Column(length = 1)
     private String genre;
@@ -44,8 +44,7 @@ public class Chauffeur implements Serializable {
     @DateTimeFormat(pattern= "yyyy-MM-dd")
     private Date dateNaissance;
     
-    @NotEmpty
-    private String numeroCarteChauffeur;
+    
     
     @NotEmpty
     private String telephone;
@@ -87,12 +86,12 @@ public class Chauffeur implements Serializable {
         this.email = email;
     }
 
-    public Long getIdChauffeur() {
-        return idChauffeur;
+    public String getNumeroCarteChauffeur() {
+        return numeroCarteChauffeur;
     }
 
-    public void setIdChauffeur(Long idChauffeur) {
-        this.idChauffeur = idChauffeur;
+    public void setNumeroCarteChauffeur(String numeroCarteChauffeur) {
+        this.numeroCarteChauffeur = numeroCarteChauffeur;
     }
 
     public String getGenre() {
@@ -125,14 +124,6 @@ public class Chauffeur implements Serializable {
 
     public void setDateNaissance(Date dateNaissance) {
         this.dateNaissance = dateNaissance;
-    }
-
-    public String getNumeroCarteChauffeur() {
-        return numeroCarteChauffeur;
-    }
-
-    public void setNumeroCarteChauffeur(String numeroCarteChauffeur) {
-        this.numeroCarteChauffeur = numeroCarteChauffeur;
     }
 
     public String getTelephone() {
@@ -207,6 +198,7 @@ public class Chauffeur implements Serializable {
         this.voitures = voitures;
     }
 
+   
   
     
 }
