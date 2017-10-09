@@ -9,10 +9,10 @@ package com.metier;
 
 
 public interface IClientMetier {
+    public void sinscrire();
     public void commander();
     public void seConnecter();
     public void annulerCourse();
     public void noterChauffeur(String numeroCourse);
     public void consulterListeCourses();
-    
 }

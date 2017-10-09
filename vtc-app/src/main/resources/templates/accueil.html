@@ -14,15 +14,20 @@ and open the template in the editor.
     <head>
         <title>Easy Cab | Bienvenue</title>
         <meta charset="UTF-8" />
-       
+        <link rel="stylesheet" type="text/css" th:href="@{/css/myStyle.css}" />
+        
     </head>
     <body>
-         <div layout:fragment="content">
-            <div class="col-md-6">
-             <img src="/images/dive-vtc.png" alt="Smiley face" height="700" width="700" />
+        <div layout:fragment="content" >
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-3"><a th:href="@{/commander}">Commander</a></div>
+                
+                    <div class="col-lg-3">
+                    <img src="/images/fragment_acueil.png" class="img-rounded" width="300" height="300" />
+                    </div>
+                </div>
             </div>
-            
-            
         </div>
     </body>
 </html>

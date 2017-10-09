@@ -6,8 +6,13 @@
 
 package com.metier;
 
+import com.dao.entities.Vehicule;
+
 
 
 public interface IChauffeurMetier {
-
+    public void sinscrire();
+    public void seConnecter();
+    public Vehicule ajouterVehicule();
+    public void supprimerVehicule(String idVoiture);
 }

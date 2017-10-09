@@ -15,6 +15,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.validation.constraints.Size;
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotEmpty;
@@ -28,6 +30,9 @@ public class Client implements Serializable {
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Long idClient;
     
+    @Column(length = 1)
+    private String genre;
+    
     @NotEmpty
     @Size(min=2, max=100)
     private String nom;
@@ -36,8 +41,7 @@ public class Client implements Serializable {
     @Size(min=2, max=100)
     private String prenom;
     
-    @NotEmpty
-    @DateTimeFormat(pattern="yyyy-MM-dd")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date dateNaissance;
     
     @DateTimeFormat(pattern = "yyyy-MM-dd")
@@ -45,12 +49,14 @@ public class Client implements Serializable {
     private String telephone;
     private String statut;
     
-    @Column(length = 1)
-    private String genre;
+    
     
     @NotEmpty
     @Email
     private String email;
+    
+    @NotEmpty
+    private String mdp;
     
     @OneToMany(mappedBy="client")
     private Collection<Adresse> adresses;
@@ -61,18 +67,19 @@ public class Client implements Serializable {
     public Client() {
     }
 
-    public Client(String nom, String prenom, Date dateNaissance, Date dateInscription, String telephone, String statut, String genre, String email, Collection<Adresse> adresses) {
+    public Client(String genre, String nom, String prenom, Date dateNaissance, Date dateInscription, String telephone, String statut, String email, String mdp) {
+        this.genre = genre;
         this.nom = nom;
         this.prenom = prenom;
         this.dateNaissance = dateNaissance;
         this.dateInscription = dateInscription;
         this.telephone = telephone;
         this.statut = statut;
-        this.genre = genre;
         this.email = email;
-        this.adresses = adresses;
+        this.mdp = mdp;
     }
 
+   
    
 
     public Long getIdClient() {
@@ -161,6 +168,14 @@ public class Client implements Serializable {
 
     public void setDateNaissance(Date dateNaissance) {
         this.dateNaissance = dateNaissance;
+    }
+
+    public String getMdp() {
+        return mdp;
+    }
+
+    public void setMdp(String mdp) {
+        this.mdp = mdp;
     }
     
     

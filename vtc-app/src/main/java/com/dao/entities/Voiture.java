@@ -8,9 +8,8 @@ package com.dao.entities;
 
 import java.io.Serializable;
 import java.util.Collection;
+import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
@@ -18,30 +17,10 @@ import javax.persistence.ManyToOne;
 import org.hibernate.validator.constraints.NotEmpty;
 
 
-
-@Entity 
-public class Voiture implements Serializable {
-    @Id
-    @GeneratedValue(strategy=GenerationType.IDENTITY)
-    private Long idVoiture;
-    
-    @NotEmpty
-    private String numeroCarteGrise;
-    
-    @NotEmpty
-    private String nom;
-    
-    @NotEmpty
-    private String marque;
-    
-    @NotEmpty
-    private Long nombrePlaces;
-    
-    @NotEmpty
-    private String motorisation;
-    
-    @NotEmpty
-    private double puissance;
+@Entity
+@DiscriminatorValue("VO")
+public class Voiture extends Vehicule {
+   
 
     @ManyToMany(mappedBy="voitures")
     private Collection<Service> services;
@@ -53,71 +32,19 @@ public class Voiture implements Serializable {
     public Voiture() {
     }
 
-    public Voiture(String numeroCarteGrise, String nom, String marque, Long nombrePlaces, String motorisation, double puissance, Collection<Service> services, Chauffeur chauffeur) {
-        this.numeroCarteGrise = numeroCarteGrise;
-        this.nom = nom;
-        this.marque = marque;
-        this.nombrePlaces = nombrePlaces;
-        this.motorisation = motorisation;
-        this.puissance = puissance;
+    public Voiture(Collection<Service> services, Chauffeur chauffeur, String numeroCarteGrise, String nom, String marque, Long nombrePlaces, String motorisation, double puissance) {
+        super(numeroCarteGrise, nom, marque, nombrePlaces, motorisation, puissance);
         this.services = services;
         this.chauffeur = chauffeur;
     }
 
-    public Long getIdVoiture() {
-        return idVoiture;
+    public Voiture(String numeroCarteGrise, String nom, String marque, Long nombrePlaces, String motorisation, double puissance) {
+        super(numeroCarteGrise, nom, marque, nombrePlaces, motorisation, puissance);
     }
 
-    public void setIdVoiture(Long idVoiture) {
-        this.idVoiture = idVoiture;
-    }
-
-    public String getNumeroCarteGrise() {
-        return numeroCarteGrise;
-    }
-
-    public void setNumeroCarteGrise(String numeroCarteGrise) {
-        this.numeroCarteGrise = numeroCarteGrise;
-    }
-
-    public String getNom() {
-        return nom;
-    }
-
-    public void setNom(String nom) {
-        this.nom = nom;
-    }
-
-    public String getMarque() {
-        return marque;
-    }
-
-    public void setMarque(String marque) {
-        this.marque = marque;
-    }
-
-    public Long getNombrePlaces() {
-        return nombrePlaces;
-    }
-
-    public void setNombrePlaces(Long nombrePlaces) {
-        this.nombrePlaces = nombrePlaces;
-    }
-
-    public String getMotorisation() {
-        return motorisation;
-    }
-
-    public void setMotorisation(String motorisation) {
-        this.motorisation = motorisation;
-    }
-
-    public double getPuissance() {
-        return puissance;
-    }
-
-    public void setPuissance(double puissance) {
-        this.puissance = puissance;
+    public Voiture(Chauffeur chauffeur, String numeroCarteGrise, String nom, String marque, Long nombrePlaces, String motorisation, double puissance) {
+        super(numeroCarteGrise, nom, marque, nombrePlaces, motorisation, puissance);
+        this.chauffeur = chauffeur;
     }
 
     public Collection<Service> getServices() {
@@ -137,6 +64,4 @@ public class Voiture implements Serializable {
     }
 
     
-  
-
 }

@@ -2,29 +2,40 @@
 <html 
     xmlns="http://www.w3.org/1999/xhtml" 
     xmlns:th="http://www.thymeleaf.org">
-<head>
-        <title>Ma banque</title>
+    <head>
+        <title>EasyCAB</title>
         <meta charset="UTF-8" />
         <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" />
-</head>
+         <link rel="stylesheet" type="text/css" th:href="@{/css/myStyle.css}" />
+        <link rel="icon" th:href="@{/images/car-icon_24.png}" />
+    </head>
     <body>
         <header>
-            <div class="navbar navbar-inverse">
+            <nav class="navbar navbar-inverse">
                 <div class="container-fluid">
+                    <div class="navbar-header">
+                        <a class="navbar-brand" href="#">EasyCab</a>
+                    </div>
                     <ul class="nav navbar-nav">
-                        <li><a th:href="@{/accueil}">Accueil</a></li>
-                        <li><a th:hre="@{/espacePersonnel}">Espace personnel</a></li> 
-                        <li><a th:href="@{/commander}">Commander</a></li>
+                        <li class="active"><a href="#">Accueil</a></li>
+                        <li><a href="#">Commander</a></li>
+                        <li><a href="#">Prix</a></li>
+                        <li><a href="#">Espace Personnel</a></li> <!-- th:if si connecte -->
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a th:href="@{/accueil/seConnecter}"><span class="glyphicon glyphicon-user"></span> Se Connecter</a></li>
+                        <li><a th:href="@{/accueil/sinscrire}"><span class="glyphicon glyphicon-user"></span> S'inscrire</a></li>
+                        <li th:if="${client}"><a th:href="@{/accueil/seDeconnecter}"><span class="glyphicon glyphicon-log-in"></span> Déconnexion</a></li>
                     </ul>
                 </div>
-            </div>
+            </nav>
         </header>
         
-        <section layout:fragment="content"></section>
+        <section layout:fragment="content" ></section>
         
         <footer>
             <div class="navbar-fixed-bottom">
-                <small>@L'adresse de votre banque</small>
+                <small>@EasyCab adresse</small>
             </div>
         </footer>
         

@@ -1,12 +1,12 @@
 USE vtc;
 
 INSERT INTO client
-(genre, nom, prenom, date_inscription, date_naissance, email, telephone)
+(genre, nom, prenom, mdp, date_inscription, date_naissance, email, telephone)
 VALUES
-('M', 'Dupont', 'Martin', '2017-09-23', '1985-04-21', 'martin-pro@gmail.com', '0605040302'),
-('M', 'Smith', 'John', '2016-08-13', '1967-07-12', 'john.smith.work@yahoo.fr', '0606761232'),
-('F', 'Camille', 'Cecile', '2015-05-09', '1990-06-23', 'cecile-ellen@gmail.com', '0677324587'),
-('F', 'Salman', 'Emilie','2017-05-14', '1986-02-10', 'emilio@hotmail.fr','0708902332');
+('M', 'Dupont', 'Martin', '1234', '2017-09-23', '1985-04-21', 'martin-pro@gmail.com', '0605040302'),
+('M', 'Smith', 'John', '9874', '2016-08-13', '1967-07-12', 'john.smith.work@yahoo.fr', '0606761232'),
+('F', 'Camille', 'Cecile', 'test', '2015-05-09', '1990-06-23', 'cecile-ellen@gmail.com', '0677324587'),
+('F', 'Salman', 'Emilie','essai', '2017-05-14', '1986-02-10', 'emilio@hotmail.fr','0708902332');
 
 INSERT INTO chauffeur
 (genre, nom, prenom, numero_carte_chauffeur, date_naissance, date_inscription, statut, email, telephone)

@@ -9,5 +9,8 @@ package com.metier;
 
 
 public interface IAdminMetier {
-
+    public void desactiverChauffeur();
+    public void desactiverClient();
+    public void modifierDonneesCB();
+    public void supprimerCommentaire();
 }

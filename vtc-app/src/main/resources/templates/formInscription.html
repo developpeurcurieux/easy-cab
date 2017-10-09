@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html 
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:th="http://www.thymeleaf.org" 
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    
+    layout:decorator="template1">
+    
+    <head>
+        <title>Easy Cab | S'inscrire</title>
+        <meta charset="UTF-8" />
+        <link rel="stylesheet" type="text/css" th:href="@{/css/myStyle.css}" />
+        
+    </head>
+    <body>
+        <div layout:fragment="content" >
+            <div class="container">
+                <div class="col-md-6 col-sm-6 col-xs-12 spacer col-md-offset-3">
+                    <div class="panel panel-default ">
+                        <div class="panel-heading">S'inscrire</div>
+                        <div class="panel-body">
+                            <form th:action="@{/accueil/saveClient}" method="post" th:object="${client}">
+                                 <div class="form-group">
+                                    
+                                    <label class="control-label">Genre</label>
+                                    <div class="row" />
+                                    <input  type="radio" th:name="genre" th:value="M" class="row"> M </input>
+                                    
+                                    <input  type="radio" th:name="genre" th:value="F" class="row"> F </input>
+                                        
+                                    
+                                    <span class="text-danger" th:errors="*{genre}"></span>
+                                </div>
+                                
+                                
+                                <div class="form-group">
+                                    <label class="control-label">Nom</label>
+                                    <input  type="text" th:field="*{nom}" class="form-control" />
+                                    <span class="text-danger" th:errors="*{nom}"></span>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label">Prénom</label>
+                                    <input  type="text" th:field="*{prenom}" class="form-control" />
+                                    <span class="text-danger" th:errors="*{prenom}"></span>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label class="control-label">Email</label>
+                                    <input  type="text" th:field="*{email}" class="form-control" />
+                                    <span class="text-danger" th:errors="*{email}"></span>
+                                </div>
+                                
+                                 <div class="form-group">
+                                    <label class="control-label">Date de naissance</label>
+                                    <input  type="date" th:field="*{dateNaissance}" class="form-control" />
+                                    <span class="text-danger" th:errors="*{dateNaissance}"></span>
+                                </div>
+                                
+                                
+                                <div class="form-group">
+                                    <label class="control-label">Mot de passe</label>
+                                    <input  type="password" th:field="*{mdp}" class="form-control" />
+                                    <span class="text-danger" th:errors="*{mdp}"></span>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label">Téléphone</label>
+                                    <input  type="text" th:field="*{telephone}" class="form-control" />
+                                    <span class="text-danger" th:errors="*{telephone}"></span>
+                                </div>
+                               
+                                <div>
+                                    <button type="submit" class="col-md-2 col-md-offset-10 btn btn-primary">ok</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    
+                </div> 
+            </div>
+        </div>
+    </body>
+</html>
