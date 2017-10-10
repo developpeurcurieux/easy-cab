@@ -6,9 +6,10 @@
         <title>EasyCAB</title>
         <meta charset="UTF-8" />
         <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" />
-         <link rel="stylesheet" type="text/css" th:href="@{/css/myStyle.css}" />
+        <link rel="stylesheet" type="text/css" th:href="@{/css/myStyle.css}" />
         <link rel="icon" th:href="@{/images/car-icon_24.png}" />
     </head>
+    
     <body>
         <header>
             <nav class="navbar navbar-inverse">
@@ -17,15 +18,17 @@
                         <a class="navbar-brand" href="#">EasyCab</a>
                     </div>
                     <ul class="nav navbar-nav">
-                        <li class="active"><a href="#">Accueil</a></li>
+                        <li class="active"><a th:href="@{/accueil}" class="glyphicon glyphicon-home" /></li>
                         <li><a href="#">Commander</a></li>
                         <li><a href="#">Prix</a></li>
                         <li><a href="#">Espace Personnel</a></li> <!-- th:if si connecte -->
                     </ul>
-                    <ul class="nav navbar-nav navbar-right">
-                        <li><a th:href="@{/accueil/seConnecter}"><span class="glyphicon glyphicon-user"></span> Se Connecter</a></li>
+                    <ul class="nav navbar-nav navbar-right" th:if="${client} == null">
+                        <li><a th:href="@{/accueil/seConnecter}"><span class="glyphicon glyphicon-log-in"></span> Se Connecter</a></li>
                         <li><a th:href="@{/accueil/sinscrire}"><span class="glyphicon glyphicon-user"></span> S'inscrire</a></li>
-                        <li th:if="${client}"><a th:href="@{/accueil/seDeconnecter}"><span class="glyphicon glyphicon-log-in"></span> Déconnexion</a></li>
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right" th:if="${client}">
+                        <li><a th:href="@{/accueil/seDeconnecter}"><span class="glyphicon glyphicon-log-out"> Déconnexion</span></a></li>
                     </ul>
                 </div>
             </nav>

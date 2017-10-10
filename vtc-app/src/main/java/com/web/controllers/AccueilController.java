@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-
+//TODO ne pas oublier 'active' dans navbar 'accueil'
 
 @Controller
 @RequestMapping("/accueil")
@@ -27,14 +27,14 @@ public class AccueilController {
     private IClientRepository clientRepository;
     
     
-    @RequestMapping("/index")
+    @RequestMapping("")
     public String index() {
         return "accueil";
     }
     
     @RequestMapping(value="/sinscrire", method=RequestMethod.GET) 
     public String sinscrire(Model model) {
-        model.addAttribute("client", new Client());
+        model.addAttribute("nouveauClient", new Client());
         return "formInscription";
     }
     
@@ -52,7 +52,7 @@ public class AccueilController {
         clientRepository.save(client);
         
         model.addAttribute("client", client);
-        return "redirect:index";
+        return "redirect:espaceClient";
     }
     
     @RequestMapping(value="/seConnecter", method=RequestMethod.GET)
@@ -62,14 +62,20 @@ public class AccueilController {
         
     }
     
-    @RequestMapping(value="/espaceClient", method=RequestMethod.POST)
-    public String espaceClient(Model model, @Valid Client client, BindingResult bindingResult) {
-        if(bindingResult.hasErrors()) {
-            return "connexionClient";
-        }
+    @RequestMapping(value="/espaceClient")
+    public String espaceClient(Model model, @Valid Client client, BindingResult bindingResult, 
+            @RequestParam(name="id_client") Long idClient ) {
+//        if(bindingResult.hasErrors()) {
+//            return "connectionClient";
+//        }
+        model.addAttribute("client", clientRepository.findOne(idClient));
+        return "espaceClient";
         
-        return "";
-        
+    }
+    
+    @RequestMapping(value="/seDeconnecter")
+    public String seDeconnecter() {
+        return "redirect:";
     }
     
 }

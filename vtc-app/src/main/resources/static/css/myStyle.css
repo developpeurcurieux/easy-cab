@@ -1,5 +1,5 @@
 body{
-    background-color: #E9E9E9; /* dark gray */
+    background-color: #222930; /* dark gray */
     /* blue #4EB1BA */
     /* gray white #E9E9E9 */
     /* dark gray  #222930;  */
@@ -11,4 +11,27 @@ h1 {
 
 .spacer {
     margin-top: 40px;
+    
+}
+
+#scene {
+	background: url(../images/accueil_photo1.jpg) no-repeat center top;
+	margin-top: 60px;
+	padding-top:140px;
+	text-align:center;
+        background-position: center center;
+	min-height: 400px;
+	width: 100%;
+        
+}
+
+#scene_connexion {
+	background: url(../images/photo_connexion.png) no-repeat center top;
+	margin-top: 60px;
+	padding-top:10px;
+	text-align:center;
+        background-position: center center;
+	
+	
+        
 }
