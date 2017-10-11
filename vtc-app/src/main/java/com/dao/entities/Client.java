@@ -9,14 +9,15 @@ package com.dao.entities;
 import java.io.Serializable;
 import java.util.Collection;
 import java.util.Date;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
+import javax.persistence.OneToOne;
 import javax.validation.constraints.Size;
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotEmpty;
@@ -58,36 +59,41 @@ public class Client implements Serializable {
     @NotEmpty
     private String mdp;
     
-    @OneToMany(mappedBy="client")
+    @OneToMany(mappedBy="client", cascade=CascadeType.DETACH)
     private Collection<Adresse> adresses;
     
     @OneToMany(mappedBy="client")
     private Collection<Commande> commandes;
 
+    @OneToOne(cascade=CascadeType.REMOVE) 
+    private CarteBancaire carteBancaire;
+    
+    
     public Client() {
     }
 
-    public Client(String genre, String nom, String prenom, Date dateNaissance, Date dateInscription, String telephone, String statut, String email, String mdp) {
+    public Client(String genre, String nom, String prenom, Date dateNaissance, String telephone, String statut, String email, String mdp) {
         this.genre = genre;
         this.nom = nom;
         this.prenom = prenom;
         this.dateNaissance = dateNaissance;
-        this.dateInscription = dateInscription;
         this.telephone = telephone;
         this.statut = statut;
         this.email = email;
         this.mdp = mdp;
     }
 
-   
-   
-
     public Long getIdClient() {
         return idClient;
     }
 
-    public void setIdClient(Long idClient) {
-        this.idClient = idClient;
+
+    public String getGenre() {
+        return genre;
+    }
+
+    public void setGenre(String genre) {
+        this.genre = genre;
     }
 
     public String getNom() {
@@ -104,6 +110,14 @@ public class Client implements Serializable {
 
     public void setPrenom(String prenom) {
         this.prenom = prenom;
+    }
+
+    public Date getDateNaissance() {
+        return dateNaissance;
+    }
+
+    public void setDateNaissance(Date dateNaissance) {
+        this.dateNaissance = dateNaissance;
     }
 
     public Date getDateInscription() {
@@ -130,20 +144,20 @@ public class Client implements Serializable {
         this.statut = statut;
     }
 
-    public String getGenre() {
-        return genre;
-    }
-
-    public void setGenre(String genre) {
-        this.genre = genre;
-    }
-
     public String getEmail() {
         return email;
     }
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getMdp() {
+        return mdp;
+    }
+
+    public void setMdp(String mdp) {
+        this.mdp = mdp;
     }
 
     public Collection<Adresse> getAdresses() {
@@ -162,24 +176,14 @@ public class Client implements Serializable {
         this.commandes = commandes;
     }
 
-    public Date getDateNaissance() {
-        return dateNaissance;
+    public CarteBancaire getCarteBancaire() {
+        return carteBancaire;
     }
 
-    public void setDateNaissance(Date dateNaissance) {
-        this.dateNaissance = dateNaissance;
+    public void setCarteBancaire(CarteBancaire carteBancaire) {
+        this.carteBancaire = carteBancaire;
     }
 
-    public String getMdp() {
-        return mdp;
-    }
-
-    public void setMdp(String mdp) {
-        this.mdp = mdp;
-    }
     
     
-    
-    
-
 }

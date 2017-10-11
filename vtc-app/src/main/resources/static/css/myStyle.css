@@ -10,29 +10,29 @@ h1 {
 }
 
 .spacer {
-    margin-top: 100px;
+    margin-top: 40px;
     
 }
 
 #scene {
-	background: url(../images/accueil_photo1.jpg) no-repeat center top;
-	margin-top: 60px;
-	padding-top:140px;
-	text-align:center;
-        background-position: center center;
-	min-height: 400px;
-	width: 100%;
-        
+    
+    min-height:400px;
+   margin-top: 60px;
+    padding-top:10px;
+    background:url(../images/accueil_photo2.jpg) no-repeat center -200px;
+    text-align:center;
+    
+    
 }
 
 #scene_connexion {
-	background: url(../images/photo_connexion.png) no-repeat center top;
-	margin-top: 60px;
-	padding-top:10px;
-	text-align:center;
-        min-height: 600px;
-        background-position: center center;
-	
-	
-        
+    background: url(../images/photo_connexion.png) no-repeat center top;
+    margin-top: 60px;
+    padding-top:10px;
+    text-align:center;
+    min-height: 600px;
+    background-position: center center;
+    
+    
+    
 }

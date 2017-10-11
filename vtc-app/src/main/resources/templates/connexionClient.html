@@ -26,7 +26,7 @@ and open the template in the editor.
                         <div class="panel panel-default ">
                             <div class="panel-heading">S'identifier</div>
                             <div class="panel-body">
-                                <form th:action="@{espaceClient}" method="post" th:object="${client}">
+                                <form th:action="@{espaceClient}" method="post" th:object="${clientMembre}">
                                     
                                     <div class="form-group">
                                         <label class="control-label">Email</label>
@@ -44,7 +44,7 @@ and open the template in the editor.
                                         <a href="#">mot de passe oublié</a>
                                     </div>
                                     <div class="col-md-2 col-md-push-5">
-                                        <button type="submit" class="btn btn-warning">s'identifier</button>
+                                        <button type="submit" class="btn btn-primary">s'identifier</button>
                                     </div>
                                 </form>
                             </div>
