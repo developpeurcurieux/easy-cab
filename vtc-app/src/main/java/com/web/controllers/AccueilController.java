@@ -51,6 +51,7 @@ public class AccueilController {
         
         clientRepository.save(client);
         
+        
         model.addAttribute("client", client);
         return "redirect:espaceClient";
     }
