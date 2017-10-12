@@ -10,15 +10,20 @@ import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import org.hibernate.validator.constraints.NotEmpty;
 
 
 @Entity
 public class CarteBancaire implements Serializable {
     @Id
     private Long numeroCarte;
+    @NotEmpty
     private String typeCarte;
+    @NotEmpty
     private Long codeCryptographique;
+    @NotEmpty
     private String nomTitulaireCB;
+    @NotEmpty
     private Date dateExpiration;
    
    
@@ -80,6 +85,14 @@ public class CarteBancaire implements Serializable {
 
     public void setClient(Client client) {
         this.client = client;
+    }
+
+    public Date getDateExpiration() {
+        return dateExpiration;
+    }
+
+    public void setDateExpiration(Date dateExpiration) {
+        this.dateExpiration = dateExpiration;
     }
             
     

@@ -25,14 +25,14 @@ and open the template in the editor.
                         <div class="panel-heading">S'inscrire</div>
                         <div class="panel-body">
                             <form th:action="@{/accueil/saveClient}" method="post" th:object="${nouveauClient}">
-                                 <div class="form-group">
+                                <div class="form-group">
                                     <label class="control-label">Genre</label>
                                     <div class="row" />
-                                    <input  type="radio" th:name="genre" th:value="M" class="row"> M </input>
-                                    <input  type="radio" th:name="genre" th:value="F" class="row"> F </input>
-                                    <span class="alert alert-danger glyphicon glyphicon-exclamation-sign" th:errors="*{genre}"></span>
+                                    <input  type="radio" value="M" th:field="*{genre}" class="row" > M  </input>
+                                    <input  type="radio" value="F" th:field="*{genre}" class="row"> F </input>
+                                     <div class="alert alert-danger" th:errors="*{genre}"> </div>
                                 </div>
-                                
+                            
                                 
                                 <div class="form-group">
                                     <label class="control-label">Nom</label>

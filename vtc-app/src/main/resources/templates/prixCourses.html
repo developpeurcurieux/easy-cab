@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html 
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:th="http://www.thymeleaf.org" 
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    
+    layout:decorator="template1">
+    
+    <head>
+        <title>Easy Cab | Prix </title>
+        <meta charset="UTF-8" />
+        <link rel="stylesheet" type="text/css" th:href="@{/css/myStyle.css}" />
+        
+    </head>
+    <body>
+        <div layout:fragment="content" >
+            <div class="container">
+                <div class="table">          
+                    <table class="table">
+                        <thead>
+                            <tr class="success">
+                               
+                                <th>Gare</th>
+                                <th>Prix E</th>
+                               
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="warning">
+                                <td>Paris Gare du nord</td>
+                                <td>70</td>
+                                
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

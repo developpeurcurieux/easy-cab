@@ -37,6 +37,8 @@ public class AccueilController {
         return "accueil";
     }
     
+    /*************** CLIENT ******************************************/
+    
     @RequestMapping(value="/sinscrire", method=RequestMethod.GET)
     public String sinscrire(Model model) {
         model.addAttribute("nouveauClient", new Client());
@@ -44,33 +46,44 @@ public class AccueilController {
     }
     
     @RequestMapping(value="/saveClient", method=RequestMethod.POST)
-    public String enregistrerClient(Model model, @Valid Client client, BindingResult bindingResult) {
+    public String enregistrerClient(Model model, @Valid Client nouveauClient, BindingResult bindingResult) {
         if(bindingResult.hasErrors()) {
             return "formInscription";
         }
         
-        System.out.println(client.getDateNaissance());
+        System.out.println(nouveauClient.getDateNaissance());
         
-        client.setDateInscription(new Date());
-        client.setStatut("active");
+        nouveauClient.setDateInscription(new Date());
+        nouveauClient.setStatut("active");
         
-        clientRepository.save(client);
+        clientRepository.save(nouveauClient);
         
         
-        model.addAttribute("client", client);
+        model.addAttribute("client", nouveauClient);
+        model.addAttribute("carteBancaire", new CarteBancaire());
+        
         return "formCB";
     }
     
     @RequestMapping(name="/saveCB", method = RequestMethod.POST)
-    public String enregistrerCarteBancaireClient(Model model, @Valid CarteBancaire carteBancaire, BindingResult bindingResult) {
+    public String enregistrerCarteBancaireClient(Model model, @Valid CarteBancaire carteBancaire, 
+            @RequestParam("id_client") Long idClient, BindingResult bindingResult) {
         if(bindingResult.hasErrors()) {
             return "formCB";
         }
+       
+        Client client = clientRepository.findOne(idClient);
+       
+        carteBancaire.setClient(client);
+                
+        client.setCarteBancaire(carteBancaire);
+              
+        clientRepository.save(client);
+        System.out.println("cb :" + carteBancaire.getNumeroCarte());
+        System.out.println("client de la cb: " + carteBancaire.getClient()
+                .getNom() );
         
         
-        //id client
-        // id cb ==> save
-        // return espace perso
         
         return "redirect:espaceClient";
     }
@@ -99,6 +112,12 @@ public class AccueilController {
     @RequestMapping(value="/seDeconnecter")
     public String seDeconnecter() {
         return "redirect:";
+    }
+    
+    /******************* TARIFICATION **********************************/
+    @RequestMapping(value="/tarifs")
+    public String afficherLesPrix() {
+        return "prixCourses";
     }
     
 }

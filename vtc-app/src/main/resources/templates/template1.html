@@ -20,11 +20,11 @@
                     <ul class="nav navbar-nav">
                         <li class="active"><a th:href="@{/accueil}" class="glyphicon glyphicon-home" /></li>
                         <li><a href="#">Espace chauffeur</a></li>
-                        <li><a href="#">Prix</a></li>
+                        <li><a th:href="@{/accueil/tarifs}">Prix</a></li>
                         <li th:if="${client}"><a href="#">Espace Personnel</a></li> <!-- th:if si connecte -->
                     </ul>
                     <ul class="nav navbar-nav navbar-right" th:if="${client} == null">
-                        <li><a th:href="@{/accueil/seConnecter}"><span class="glyphicon glyphicon-log-in"></span> Se Connecter</a></li>
+                        <li><a th:href="@{/accueil/seConnecter}"><span class="glyphicon glyphicon-log-in"></span> Se Connecter </a></li>
                         <li><a th:href="@{/accueil/sinscrire}"><span class="glyphicon glyphicon-user"></span> S'inscrire</a></li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right" th:if="${client}">

@@ -5,8 +5,9 @@ body{
     /* dark gray  #222930;  */
 }
 
-h1 {
-    color: #4EB1BA;
+h1, table, p {
+    color: #403030;
+/*    background-color: #222930;*/
 }
 
 .spacer {
