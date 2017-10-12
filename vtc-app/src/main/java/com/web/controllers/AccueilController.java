@@ -83,11 +83,13 @@ public class AccueilController {
     
     @RequestMapping(value="/espaceClient")
     public String espaceClient(Model model, @Valid Client client, BindingResult bindingResult, 
-            @RequestParam(name="id_client") Long idClient ) {
+            @RequestParam(name="email") String email ) {
 //        if(bindingResult.hasErrors()) {
 //            return "connectionClient";
 //        }
-        model.addAttribute("client", clientRepository.findOne(idClient));
+
+Client c = clientRepository.findByEmail(email);
+        model.addAttribute("client", c);
         return "espaceClient";
         
     }
