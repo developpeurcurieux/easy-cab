@@ -7,11 +7,9 @@
 package com.dao.entities;
 
 import java.io.Serializable;
-import javax.persistence.CascadeType;
+import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
 
 
 @Entity
@@ -21,7 +19,7 @@ public class CarteBancaire implements Serializable {
     private String typeCarte;
     private Long codeCryptographique;
     private String nomTitulaireCB;
-    
+    private Date dateExpiration;
    
    
     private Client client;

@@ -12,7 +12,7 @@ and open the template in the editor.
     layout:decorator="template1">
     
     <head>
-        <title>Easy Cab | S'inscrire</title>
+        <title>Easy Cab | Espace personnel</title>
         <meta charset="UTF-8" />
         <link rel="stylesheet" type="text/css" th:href="@{/css/myStyle.css}" />
         
@@ -21,6 +21,9 @@ and open the template in the editor.
         <div layout:fragment="content" >
             <div class="container">
                 <h1>Bienvenue </h1>
+                <p>
+                    <label th:text="${client.nom}"></label> 
+                </p>
             </div>
         </div>
     </body>

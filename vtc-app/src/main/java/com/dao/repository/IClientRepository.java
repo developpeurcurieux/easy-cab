@@ -8,11 +8,13 @@ package com.dao.repository;
 
 import com.dao.entities.Client;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 
 
 
 public interface IClientRepository extends JpaRepository<Client, Long> {
     
-//    @Query("select c from Client ")
-    public Client findByEmail(String email);
+    @Query("select c from Client c WHERE c.email = :x")
+    public Client findByEmail(@Param("x") String email);
 }

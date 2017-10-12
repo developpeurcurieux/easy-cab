@@ -1,8 +1,8 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+* To change this license header, choose License Headers in Project Properties.
+* To change this template file, choose Tools | Templates
+* and open the template in the editor.
+*/
 
 package com.web.controllers;
 
@@ -37,7 +37,7 @@ public class AccueilController {
         return "accueil";
     }
     
-    @RequestMapping(value="/sinscrire", method=RequestMethod.GET) 
+    @RequestMapping(value="/sinscrire", method=RequestMethod.GET)
     public String sinscrire(Model model) {
         model.addAttribute("nouveauClient", new Client());
         return "formInscription";
@@ -58,20 +58,21 @@ public class AccueilController {
         
         
         model.addAttribute("client", client);
-        return "redirect:espaceClient";
+        return "formCB";
     }
     
-    @RequestMapping(name="/saveCB", method = RequestMethod.POST) 
+    @RequestMapping(name="/saveCB", method = RequestMethod.POST)
     public String enregistrerCarteBancaireClient(Model model, @Valid CarteBancaire carteBancaire, BindingResult bindingResult) {
         if(bindingResult.hasErrors()) {
             return "formCB";
         }
         
-        //id client 
-        // id cb ==> save 
+        
+        //id client
+        // id cb ==> save
         // return espace perso
         
-        return "";
+        return "redirect:espaceClient";
     }
     
     @RequestMapping(value="/seConnecter", method=RequestMethod.GET)
@@ -82,13 +83,14 @@ public class AccueilController {
     }
     
     @RequestMapping(value="/espaceClient")
-    public String espaceClient(Model model, @Valid Client client, BindingResult bindingResult, 
+    public String espaceClient(Model model, @Valid Client client, BindingResult bindingResult,
             @RequestParam(name="email") String email ) {
-//        if(bindingResult.hasErrors()) {
-//            return "connectionClient";
-//        }
-
-Client c = clientRepository.findByEmail(email);
+        if(bindingResult.hasErrors()) {
+            return "connectionClient";
+        }
+      
+        Client c = clientRepository.findByEmail(email);
+       
         model.addAttribute("client", c);
         return "espaceClient";
         
