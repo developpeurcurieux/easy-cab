@@ -99,7 +99,7 @@ public class AccueilController {
     public String espaceClient(Model model, @Valid Client client, BindingResult bindingResult,
             @RequestParam(name="email") String email ) {
         if(bindingResult.hasErrors()) {
-            return "connectionClient";
+            return "connexionClient";
         }
       
         Client c = clientRepository.findByEmail(email);

@@ -24,12 +24,11 @@ and open the template in the editor.
                     <div class="panel panel-default ">
                         <div class="panel-heading">S'inscrire</div>
                         <div class="panel-body">
-                            <form th:action="@{/accueil/saveClient}" method="post" th:object="${nouveauClient}">
+                            <form th:action="@{/accueil/saveClient}" method="post" th:object="${client}">
                                 <div class="form-group">
                                     <label class="control-label">Genre</label>
                                     <div class="row" />
-                                    <input  type="radio" value="M" th:field="*{genre}" class="row" > M  </input>
-                                    <input  type="radio" value="F" th:field="*{genre}" class="row"> F </input>
+                                    <input  type="radio" th:field="*{genre}" class="row" > M  </input>
                                      <div class="alert alert-danger" th:errors="*{genre}"> </div>
                                 </div>
                             
