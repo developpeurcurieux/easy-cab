@@ -47,18 +47,18 @@ public class Commande implements Serializable {
     private Facture facture;
     
     @OneToMany(mappedBy="commande")
-    private Collection<LigneCommande> ligneCommandes;
+    private Collection<Course> courses;
 
     public Commande() {
     }
 
-    public Commande(Date dateCommande, Date dateReservation, String modePaiement, String remise, Client client, Collection<LigneCommande> ligneCommandes) {
+    public Commande(Date dateCommande, Date dateReservation, String modePaiement, String remise, Client client, Collection<Course> courses) {
         this.dateCommande = dateCommande;
         this.dateReservation = dateReservation;
         this.modePaiement = modePaiement;
         this.remise = remise;
         this.client = client;
-        this.ligneCommandes = ligneCommandes;
+        this.courses = courses;
     }
 
     public Long getIdCommande() {
@@ -117,12 +117,12 @@ public class Commande implements Serializable {
         this.facture = facture;
     }
 
-    public Collection<LigneCommande> getLigneCommandes() {
-        return ligneCommandes;
+    public Collection<Course> getcourses() {
+        return courses;
     }
 
-    public void setLigneCommandes(Collection<LigneCommande> ligneCommandes) {
-        this.ligneCommandes = ligneCommandes;
+    public void setcourses(Collection<Course> courses) {
+        this.courses = courses;
     }
             
             

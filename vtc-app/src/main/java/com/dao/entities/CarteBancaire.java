@@ -10,19 +10,26 @@ import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.validation.constraints.Size;
 import org.hibernate.validator.constraints.NotEmpty;
 
 
 @Entity
 public class CarteBancaire implements Serializable {
     @Id
+    @NotEmpty
     private Long numeroCarte;
+    
     @NotEmpty
     private String typeCarte;
+    
     @NotEmpty
     private Long codeCryptographique;
+    
     @NotEmpty
+    @Size(min=2, max=100)
     private String nomTitulaireCB;
+    
     @NotEmpty
     private Date dateExpiration;
    

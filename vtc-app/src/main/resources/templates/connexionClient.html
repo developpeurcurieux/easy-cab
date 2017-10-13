@@ -26,11 +26,11 @@ and open the template in the editor.
                         <div class="panel panel-default ">
                             <div class="panel-heading">S'identifier</div>
                             <div class="panel-body">
-                                <form th:action="@{espaceClient}" method="post" th:object="${clientMembre}">
+                                <form th:action="@{espaceClient}" method="post" th:object="${client}">
                                     
                                     <div class="form-group">
                                         <label class="control-label">Email</label>
-                                        <input  type="email" placeholder="email" th:name="email" th:value="*{email}" class="form-control" />
+                                        <input  type="email" placeholder="email" th:field="*{email}" class="form-control" />
                                         <span class="text-danger" th:errors="*{email}"></span>
                                     </div>
                                         

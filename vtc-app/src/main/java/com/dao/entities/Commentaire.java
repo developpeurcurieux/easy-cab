@@ -25,15 +25,15 @@ public class Commentaire implements Serializable {
     private String champLibre;
     
     @OneToOne
-    @JoinColumn(name="FK_ligneCommande")
-    private LigneCommande ligneCommande;
+    @JoinColumn(name="FK_course")
+    private Course course;
 
     public Commentaire() {
     }
 
-    public Commentaire(String champLibre, LigneCommande ligneCommande) {
+    public Commentaire(String champLibre, Course course) {
         this.champLibre = champLibre;
-        this.ligneCommande = ligneCommande;
+        this.course = course;
     }
 
     public Long getIdCommentaire() {
@@ -52,12 +52,12 @@ public class Commentaire implements Serializable {
         this.champLibre = champLibre;
     }
 
-    public LigneCommande getLigneCommande() {
-        return ligneCommande;
+    public Course getcourse() {
+        return course;
     }
 
-    public void setLigneCommande(LigneCommande ligneCommande) {
-        this.ligneCommande = ligneCommande;
+    public void setcourse(Course course) {
+        this.course = course;
     }
     
     

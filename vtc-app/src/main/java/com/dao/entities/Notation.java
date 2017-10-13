@@ -26,16 +26,16 @@ public class Notation implements Serializable {
     private String commentaire;
     
     @OneToOne
-    @JoinColumn(name="FK_ligneCommande")
-    private LigneCommande ligneCommande;
+    @JoinColumn(name="FK_course")
+    private Course course;
 
     public Notation() {
     }
 
-    public Notation(double note, String commentaire, LigneCommande ligneCommande) {
+    public Notation(double note, String commentaire, Course course) {
         this.note = note;
         this.commentaire = commentaire;
-        this.ligneCommande = ligneCommande;
+        this.course = course;
     }
 
     public Long getIdNotation() {
@@ -62,12 +62,12 @@ public class Notation implements Serializable {
         this.commentaire = commentaire;
     }
 
-    public LigneCommande getLigneCommande() {
-        return ligneCommande;
+    public Course getcourse() {
+        return course;
     }
 
-    public void setLigneCommande(LigneCommande ligneCommande) {
-        this.ligneCommande = ligneCommande;
+    public void setcourse(Course course) {
+        this.course = course;
     }
     
     

@@ -6,11 +6,11 @@
 
 package com.dao.entities;
 
-import java.io.Serializable;
 import java.util.Collection;
 import java.util.Date;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
+import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -26,23 +26,9 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 
 @Entity
-public class Client implements Serializable {
-    @Id
-    @GeneratedValue(strategy=GenerationType.IDENTITY)
-    private Long idClient;
-    
-    @NotNull
-    @Column(length = 1)
-    private String genre;
-    
-    @NotEmpty
-    @Size(min=2, max=100)
-    private String nom;
-    
-    @NotEmpty
-    @Size(min=2, max=100)
-    private String prenom;
-    
+@DiscriminatorValue("CLIENT")
+public class Client extends User {
+     
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date dateNaissance;
     
@@ -50,15 +36,10 @@ public class Client implements Serializable {
     private Date dateInscription;
     private String telephone;
     private String statut;
-    
-    
-    
+     
     @NotEmpty
     @Email
     private String email;
-    
-    @NotEmpty
-    private String mdp;
     
     @OneToMany(mappedBy="client", cascade=CascadeType.DETACH)
     private Collection<Adresse> adresses;
@@ -69,48 +50,19 @@ public class Client implements Serializable {
     @OneToOne(cascade=CascadeType.REMOVE) 
     private CarteBancaire carteBancaire;
     
+    @OneToOne(mappedBy="client")
+    private Destination destination;
     
     public Client() {
     }
 
-    public Client(String genre, String nom, String prenom, Date dateNaissance, String telephone, String statut, String email, String mdp) {
-        this.genre = genre;
-        this.nom = nom;
-        this.prenom = prenom;
+    public Client(Date dateNaissance, Date dateInscription, String telephone, String statut, String email, String genre, String nom, String prenom, String mdp, Date dateEntree) {
+        super(genre, nom, prenom, mdp, dateEntree);
         this.dateNaissance = dateNaissance;
+        this.dateInscription = dateInscription;
         this.telephone = telephone;
         this.statut = statut;
         this.email = email;
-        this.mdp = mdp;
-    }
-
-    public Long getIdClient() {
-        return idClient;
-    }
-
-
-    public String getGenre() {
-        return genre;
-    }
-
-    public void setGenre(String genre) {
-        this.genre = genre;
-    }
-
-    public String getNom() {
-        return nom;
-    }
-
-    public void setNom(String nom) {
-        this.nom = nom;
-    }
-
-    public String getPrenom() {
-        return prenom;
-    }
-
-    public void setPrenom(String prenom) {
-        this.prenom = prenom;
     }
 
     public Date getDateNaissance() {
@@ -151,14 +103,6 @@ public class Client implements Serializable {
 
     public void setEmail(String email) {
         this.email = email;
-    }
-
-    public String getMdp() {
-        return mdp;
-    }
-
-    public void setMdp(String mdp) {
-        this.mdp = mdp;
     }
 
     public Collection<Adresse> getAdresses() {

@@ -40,7 +40,7 @@ public class Service implements Serializable {
     private TVA tva;
     
     @OneToMany(mappedBy="service")
-    private Collection<LigneCommande> ligneCommandes;
+    private Collection<Course> courses;
     
     @ManyToOne
     @JoinColumn(name="FK_promotion")
@@ -101,12 +101,12 @@ public class Service implements Serializable {
         this.tva = tva;
     }
 
-    public Collection<LigneCommande> getLigneCommandes() {
-        return ligneCommandes;
+    public Collection<Course> getcourses() {
+        return courses;
     }
 
-    public void setLigneCommandes(Collection<LigneCommande> ligneCommandes) {
-        this.ligneCommandes = ligneCommandes;
+    public void setcourses(Collection<Course> courses) {
+        this.courses = courses;
     }
 
     public Promotion getPromotion() {

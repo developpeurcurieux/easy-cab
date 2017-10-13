@@ -41,56 +41,57 @@ public class AccueilController {
     
     @RequestMapping(value="/sinscrire", method=RequestMethod.GET)
     public String sinscrire(Model model) {
-        model.addAttribute("nouveauClient", new Client());
+        model.addAttribute("client", new Client());
         return "formInscription";
     }
     
     @RequestMapping(value="/saveClient", method=RequestMethod.POST)
-    public String enregistrerClient(Model model, @Valid Client nouveauClient, BindingResult bindingResult) {
+    public String enregistrerClient(Model model, @Valid Client client, BindingResult bindingResult) {
         if(bindingResult.hasErrors()) {
             return "formInscription";
         }
         
-        System.out.println(nouveauClient.getDateNaissance());
+        System.out.println(client.getDateNaissance());
         
-        nouveauClient.setDateInscription(new Date());
-        nouveauClient.setStatut("active");
+        client.setDateInscription(new Date());
+        client.setStatut("active");
+        clientRepository.save(client);
         
-        clientRepository.save(nouveauClient);
-        
-        
-        model.addAttribute("client", nouveauClient);
+        model.addAttribute("idClient", client.getId());
         model.addAttribute("carteBancaire", new CarteBancaire());
         
         return "formCB";
     }
     
     @RequestMapping(name="/saveCB", method = RequestMethod.POST)
-    public String enregistrerCarteBancaireClient(Model model, @Valid CarteBancaire carteBancaire, 
-            @RequestParam("id_client") Long idClient, BindingResult bindingResult) {
+    public String enregistrerCarteBancaire(Model model, @Valid CarteBancaire carteBancaire, BindingResult bindingResult,
+            @RequestParam("idClient") Long idClient) {
         if(bindingResult.hasErrors()) {
+            System.out.println("erreurs: " + bindingResult.getAllErrors());
             return "formCB";
         }
-       
-        Client client = clientRepository.findOne(idClient);
-       
-        carteBancaire.setClient(client);
-                
-        client.setCarteBancaire(carteBancaire);
-              
-        clientRepository.save(client);
-        System.out.println("cb :" + carteBancaire.getNumeroCarte());
-        System.out.println("client de la cb: " + carteBancaire.getClient()
-                .getNom() );
-        
-        
-        
-        return "redirect:espaceClient";
+//       
+//       try {
+//        Client client = clientRepository.findOne(idClient);
+//       
+//        carteBancaire.setClient(client);
+//                
+//        client.setCarteBancaire(carteBancaire);
+//              
+//        clientRepository.save(client);
+//        System.out.println("cb :" + carteBancaire.getNumeroCarte());
+//        System.out.println("client de la cb: " + carteBancaire.getClient().getNom() );
+//       }
+//       catch(Exception e) {
+//           System.out.println("erreur ==> " + e);
+//       }
+        return "accueil";
+
     }
     
     @RequestMapping(value="/seConnecter", method=RequestMethod.GET)
     public String seConnecter(Model model) {
-        model.addAttribute("clientMembre", new Client());
+        model.addAttribute("client", new Client());
         return "connexionClient";
         
     }
@@ -105,6 +106,7 @@ public class AccueilController {
         Client c = clientRepository.findByEmail(email);
        
         model.addAttribute("client", c);
+        
         return "espaceClient";
         
     }

@@ -28,15 +28,15 @@ public class Statut implements Serializable {
     private String libelle;
     
     @ManyToOne
-    @JoinColumn(name="FK_ligneCommande")
-    private LigneCommande ligneCommande;
+    @JoinColumn(name="FK_course")
+    private Course course;
 
     public Statut() {
     }
 
-    public Statut(String libelle, LigneCommande ligneCommande) {
+    public Statut(String libelle, Course course) {
         this.libelle = libelle;
-        this.ligneCommande = ligneCommande;
+        this.course = course;
     }
 
     public Long getIdStatut() {
@@ -55,12 +55,12 @@ public class Statut implements Serializable {
         this.libelle = libelle;
     }
 
-    public LigneCommande getLigneCommande() {
-        return ligneCommande;
+    public Course getcourse() {
+        return course;
     }
 
-    public void setLigneCommande(LigneCommande ligneCommande) {
-        this.ligneCommande = ligneCommande;
+    public void setcourse(Course course) {
+        this.course = course;
     }
     
     

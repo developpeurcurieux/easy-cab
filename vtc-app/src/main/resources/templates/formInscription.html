@@ -28,7 +28,8 @@ and open the template in the editor.
                                 <div class="form-group">
                                     <label class="control-label">Genre</label>
                                     <div class="row" />
-                                    <input  type="radio" th:field="*{genre}" class="row" > M  </input>
+                                    <input  type="radio" th:value="M" th:field="*{genre}" class="row" > M  </input>
+                                     <input  type="radio" th:value="F" th:field="*{genre}" class="row" > F  </input>
                                      <div class="alert alert-danger" th:errors="*{genre}"> </div>
                                 </div>
                             

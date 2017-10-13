@@ -25,40 +25,42 @@ and open the template in the editor.
                         <div class="panel-heading">Détails Carte Bancaire <img th:src="@{/images/cb.png}" class="col-md-offset-3"/>
                         </div>
                         <div class="panel-body">
-                            <form th:action="@{/accueil/saveCB(id_client = ${client.idClient})}" th:object="${carteBancaire}" method="post">
+                            <form th:action="@{/accueil/saveCB(id = ${idClient})}" th:object="${carteBancaire}" method="post">
                               
                                 <!-- radio type de care -->
                                 <div class="form-group">
                                     <label class="control-label">Type de carte</label>
                                     <div class="row" />
-                                    <input  type="radio" th:name="typeCarte" th:value="Visa" class="row"> Visa </input>
-                                    <input  type="radio" th:name="typeCarte" th:value="Electron" class="row"> Electron </input>
-                                    <input  type="radio" th:name="typeCarte" th:value="MasterCard" class="row"> Master Card </input>
+                                    <input  type="radio"  th:value="Visa" th:field="*{typeCarte}" class="row"> Visa </input>
+                                    <input  type="radio"  th:value="Electron" th:field="*{typeCarte}" class="row"> Electron </input>
+                                    <input  type="radio"  th:value="MasterCard" th:field="*{typeCarte}" class="row"> Master Card </input>
                                     <div class="alert alert-danger" th:errors="*{typeCarte}"></div>   
                                 </div>
                                 
-                                
+                                <!--
                                 <div class="form-group">
                                     <label class="control-label">Titulaire de la carte</label>
-                                    <input type="text" th:name="nomTitulaireCB" th:value="*{nomTitulaireCB}" class="form-control"/>
+                                    <input type="text"  th:field="*{nomTitulaireCB}" class="form-control"/>
                                      <div class="alert alert-danger" th:errors="*{nomTitulaireCB}"></div>
                                 </div>
                                 
                                 <div class="form-group">
                                     <label class="control-label">Numéro carte</label>
-                                    <input type="text" th:name="numeroCarte" th:value="*{numeroCarte}" class="form-control"/>
+                                    <input type="text"  th:field="*{numeroCarte}" class="form-control"/>
                                      <div class="alert alert-danger" th:errors="*{numeroCarte}"></div>
                                 </div>
                                 <div class="form-group">
                                     <label class="control-label">Date d'expiration</label>
-                                    <input type="date" th:name="dateExpiration" th:value="*{dateExpiration}" class="form-control" />
+                                    <input type="date"  th:field="*{dateExpiration}" class="form-control" />
                                      <div class="alert alert-danger" th:errors="*{dateExpiration}"></div>
                                 </div>
                                 <div class="form-group">
                                     <label class="control-label">Code crypto</label>
-                                    <input type="text" th:name="codeCryptographique" th:value="*{codeCryptographique}" class="form-control" />
+                                    <input type="text"  th:field="*{codeCryptographique}" class="form-control" />
                                      <div class="alert alert-danger" th:errors="*{codeCryptographique}"></div>
                                 </div>
+                                
+                                -->
                                 <div>
                                     <button type="submit" class="col-md-2 col-md-offset-10 btn btn-success">ok</button>
                                 </div>
