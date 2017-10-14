@@ -43,11 +43,11 @@ public class Adresse implements Serializable {
     private String statut;
     
     @ManyToOne
-    @JoinColumn(name="FK_Client")
+    @JoinColumn(name="fk_client")
     private Client client;
     
     @ManyToOne
-    @JoinColumn(name="FK_Chauffeur")
+    @JoinColumn(name="fk_chauffeur")
     private Chauffeur chauffeur;
 
     public Adresse() {

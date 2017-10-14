@@ -28,7 +28,7 @@ public class Facture implements Serializable {
     private Date dateFacturation;
 
     @OneToOne
-    @JoinColumn(name="FK_Commande")
+    @JoinColumn(name="fk_commande")
     private Commande commande;
     
     public Facture() {

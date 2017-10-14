@@ -10,6 +10,8 @@ import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.validation.constraints.Size;
 import org.hibernate.validator.constraints.NotEmpty;
 
@@ -33,7 +35,8 @@ public class CarteBancaire implements Serializable {
     @NotEmpty
     private Date dateExpiration;
    
-   
+    @OneToOne
+    @JoinColumn(name="fk_client")
     private Client client;
 
     public CarteBancaire() {

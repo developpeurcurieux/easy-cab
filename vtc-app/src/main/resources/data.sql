@@ -1,20 +1,20 @@
 USE vtc;
 
-INSERT INTO client
-(genre, nom, prenom, mdp, date_inscription, date_naissance, email, telephone)
+INSERT INTO user
+(type_profil, genre, nom, prenom, mdp, date_entree, date_naissance, email, telephone)
 VALUES
-('M', 'Dupont', 'Martin', '1234', '2017-09-23', '1985-04-21', 'martin-pro@gmail.com', '0605040302'),
-('M', 'Smith', 'John', '9874', '2016-08-13', '1967-07-12', 'john.smith.work@yahoo.fr', '0606761232'),
-('F', 'Camille', 'Cecile', 'test', '2015-05-09', '1990-06-23', 'cecile-ellen@gmail.com', '0677324587'),
-('F', 'Salman', 'Emilie','essai', '2017-05-14', '1986-02-10', 'emilio@hotmail.fr','0708902332');
+('CLIENT', 'M', 'Dupont', 'Martin', '1234', '2017-09-23', '1985-04-21', 'martin-pro@gmail.com', '0605040302'),
+('CLIENT', 'M', 'Smith', 'John', '9874', '2016-08-13', '1967-07-12', 'john.smith.work@yahoo.fr', '0606761232'),
+('CLIENT', 'F', 'Camille', 'Cecile', 'test', '2015-05-09', '1990-06-23', 'cecile-ellen@gmail.com', '0677324587'),
+('CLIENT', 'F', 'Salman', 'Emilie','essai', '2017-05-14', '1986-02-10', 'emilio@hotmail.fr','0708902332');
 
 INSERT INTO chauffeur
-(genre, nom, prenom, numero_carte_chauffeur, date_naissance, date_inscription, statut, email, telephone)
+(genre, nom, prenom, numero_carte_chauffeur, date_naissance, date_inscription, statut, email)
 VALUES
-('M', 'Cinco', 'Jose', '234CARTEPRO654', '1987-06-23', NOW(), 'active','vtcpro-jose@gmail.com',  '0650987864'),
-('M', 'Mir', 'Ali', '238CARTEPRO678', '1970-05-10', NOW(),'active','vtcpro-ali@gmail.com', '0787345412'),
-('F', 'Da Silva', 'Cyntia','323CARTEPRO677', '1980-10-10', NOW(),'active', 'vtcpro-cyntia@gmail.com','0677343452'),
-('F', 'Simon', 'Nathalie', '387CARTEPRO778', '1991-03-12', NOW(), 'active', 'vtcpro-nathalie@gmail.com','0790897546');
+('M', 'Cinco', 'Jose', '234CARTEPRO654', '1987-06-23', NOW(), 'active','vtcpro-jose@gmail.com'),
+('M', 'Mir', 'Ali', '238CARTEPRO678', '1970-05-10', NOW(),'active','vtcpro-ali@gmail.com'),
+('F', 'Da Silva', 'Cyntia','323CARTEPRO677', '1980-10-10', NOW(),'active', 'vtcpro-cyntia@gmail.com'),
+('F', 'Simon', 'Nathalie', '387CARTEPRO778', '1991-03-12', NOW(), 'active', 'vtcpro-nathalie@gmail.com');
 
 
 

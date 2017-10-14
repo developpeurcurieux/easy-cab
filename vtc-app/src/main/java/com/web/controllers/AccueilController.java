@@ -53,7 +53,7 @@ public class AccueilController {
         
         System.out.println(client.getDateNaissance());
         
-        client.setDateInscription(new Date());
+        client.setDateEntree(new Date());
         client.setStatut("active");
         clientRepository.save(client);
         
@@ -119,7 +119,7 @@ public class AccueilController {
     /******************* TARIFICATION **********************************/
     @RequestMapping(value="/tarifs")
     public String afficherLesPrix() {
-        return "prixCourses";
+        return "prixLigneCommandes";
     }
     
 }

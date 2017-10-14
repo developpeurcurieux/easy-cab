@@ -8,6 +8,7 @@ package com.dao.entities;
 
 import java.io.Serializable;
 import java.util.Collection;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -33,32 +34,33 @@ public class Service implements Serializable {
     private String nom;
     
     private Long quantiteVoiture;
-    private double prixService;
     
-    @ManyToOne
-    @JoinColumn(name="FK_TVA")
+    
+    @ManyToOne(cascade = CascadeType.DETACH)
+    @JoinColumn(name="fk_tva")
     private TVA tva;
+    
+    @ManyToOne(cascade = CascadeType.DETACH)
+    @JoinColumn(name="fk_prix")
+    private Prix prix;
     
     @OneToMany(mappedBy="service")
     private Collection<Course> courses;
     
     @ManyToOne
-    @JoinColumn(name="FK_promotion")
+    @JoinColumn(name="fk_promotion")
     private Promotion promotion;
     
-    @ManyToMany
-    @JoinTable(name="Service_Voiture")
-    private Collection<Voiture> voitures;
+    @ManyToOne
+    @JoinColumn(name="fk_chauffeur")
+    private Chauffeur chauffeur;
 
     public Service() {
     }
 
-    public Service(String nom, Long quantiteVoiture, double prixService, TVA tva, Collection<Voiture> voitures) {
+    public Service(String nom, Long quantiteVoiture) {
         this.nom = nom;
         this.quantiteVoiture = quantiteVoiture;
-        this.prixService = prixService;
-        this.tva = tva;
-        this.voitures = voitures;
     }
 
     public Long getIdService() {
@@ -85,14 +87,6 @@ public class Service implements Serializable {
         this.quantiteVoiture = quantiteVoiture;
     }
 
-    public double getPrixService() {
-        return prixService;
-    }
-
-    public void setPrixService(double prixService) {
-        this.prixService = prixService;
-    }
-
     public TVA getTva() {
         return tva;
     }
@@ -101,11 +95,19 @@ public class Service implements Serializable {
         this.tva = tva;
     }
 
-    public Collection<Course> getcourses() {
+    public Prix getPrix() {
+        return prix;
+    }
+
+    public void setPrix(Prix prix) {
+        this.prix = prix;
+    }
+
+    public Collection<Course> getLigneCommandes() {
         return courses;
     }
 
-    public void setcourses(Collection<Course> courses) {
+    public void setLigneCommandes(Collection<Course> courses) {
         this.courses = courses;
     }
 
@@ -117,15 +119,13 @@ public class Service implements Serializable {
         this.promotion = promotion;
     }
 
-    public Collection<Voiture> getVoitures() {
-        return voitures;
+    public Chauffeur getChauffeur() {
+        return chauffeur;
     }
 
-    public void setVoitures(Collection<Voiture> voitures) {
-        this.voitures = voitures;
+    public void setChauffeur(Chauffeur chauffeur) {
+        this.chauffeur = chauffeur;
     }
-    
-    
-    
+
     
 }

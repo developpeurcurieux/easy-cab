@@ -9,10 +9,12 @@ package com.dao.entities;
 import java.io.Serializable;
 import java.util.Collection;
 import java.util.Date;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.validation.constraints.Size;
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotEmpty;
@@ -28,8 +30,7 @@ public class Chauffeur implements Serializable {
     
     @Column(length = 1)
     private String genre;
-    
-    
+   
     @NotEmpty
     @Size(min=1, max=100)
     private String nom;
@@ -42,14 +43,8 @@ public class Chauffeur implements Serializable {
     @DateTimeFormat(pattern= "yyyy-MM-dd")
     private Date dateNaissance;
     
-    
-    
-    @NotEmpty
-    private String telephone;
-    
     private String nomPhoto;
     private Byte[] photo;
-    
     
     @DateTimeFormat(pattern="yyyy-MM-dd")
     private Date dateInscription;
@@ -66,20 +61,31 @@ public class Chauffeur implements Serializable {
     @OneToMany(mappedBy="chauffeur")
     private Collection<Adresse> adresses;
     
-    @OneToMany(mappedBy="chauffeur")
+    @OneToMany(mappedBy="chauffeur", cascade = CascadeType.REMOVE)
     private Collection<Voiture> voitures;
+    
+    @OneToOne(mappedBy="chauffeur", cascade = CascadeType.REMOVE)
+    private CompteBancaire compteBancaire;
+    
+    @OneToMany(mappedBy="chauffeur")
+    private Collection<Service> services;
+    
+    @OneToOne(mappedBy="chauffeur", cascade = CascadeType.REMOVE)
+    private Telephone telephone;
 
+    @OneToMany(mappedBy="chauffeur")
+    private Collection<Virement> virements;
+    
     public Chauffeur() {
         
     }
 
-    public Chauffeur(String genre, String nom, String prenom, Date dateNaissance, String numeroCarteChauffeur, String telephone, Date dateInscription, String statut, String email) {
+    public Chauffeur(String numeroCarteChauffeur, String genre, String nom, String prenom, Date dateNaissance, Date dateInscription, String statut, String email) {
+        this.numeroCarteChauffeur = numeroCarteChauffeur;
         this.genre = genre;
         this.nom = nom;
         this.prenom = prenom;
         this.dateNaissance = dateNaissance;
-        this.numeroCarteChauffeur = numeroCarteChauffeur;
-        this.telephone = telephone;
         this.dateInscription = dateInscription;
         this.statut = statut;
         this.email = email;
@@ -123,14 +129,6 @@ public class Chauffeur implements Serializable {
 
     public void setDateNaissance(Date dateNaissance) {
         this.dateNaissance = dateNaissance;
-    }
-
-    public String getTelephone() {
-        return telephone;
-    }
-
-    public void setTelephone(String telephone) {
-        this.telephone = telephone;
     }
 
     public String getNomPhoto() {
@@ -197,7 +195,38 @@ public class Chauffeur implements Serializable {
         this.voitures = voitures;
     }
 
-   
+    public CompteBancaire getCompteBancaire() {
+        return compteBancaire;
+    }
+
+    public void setCompteBancaire(CompteBancaire compteBancaire) {
+        this.compteBancaire = compteBancaire;
+    }
+
+    public Collection<Service> getServices() {
+        return services;
+    }
+
+    public void setServices(Collection<Service> services) {
+        this.services = services;
+    }
+
+    public Telephone getTelephone() {
+        return telephone;
+    }
+
+    public void setTelephone(Telephone telephone) {
+        this.telephone = telephone;
+    }
+
+    public Collection<Virement> getVirements() {
+        return virements;
+    }
+
+    public void setVirements(Collection<Virement> virements) {
+        this.virements = virements;
+    }
+
   
-    
+   
 }

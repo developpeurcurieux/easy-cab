@@ -26,7 +26,7 @@ public class Notation implements Serializable {
     private String commentaire;
     
     @OneToOne
-    @JoinColumn(name="FK_course")
+    @JoinColumn(name="fk_course")
     private Course course;
 
     public Notation() {

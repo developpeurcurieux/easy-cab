@@ -40,7 +40,7 @@ public class Commande implements Serializable {
     private String remise;
     
     @ManyToOne
-    @JoinColumn(name="FK_Client")
+    @JoinColumn(name="fk_client")
     private Client client;
     
     @OneToOne(mappedBy="commande")

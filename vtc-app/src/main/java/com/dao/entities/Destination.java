@@ -6,6 +6,7 @@
 
 package com.dao.entities;
 
+import java.io.Serializable;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -16,7 +17,7 @@ import org.hibernate.validator.constraints.NotEmpty;
 
 
 @Entity
-public class Destination {
+public class Destination implements Serializable {
     @Id
     @GeneratedValue()
     private Long idDestination;
@@ -37,8 +38,7 @@ public class Destination {
     @JoinColumn(name="fk_client")
     private Client client;
     
-    @OneToOne
-    @JoinColumn(name="fk_course")
+    @OneToOne(mappedBy="destination")
     private Course course;
 
     public Destination() {
@@ -85,11 +85,11 @@ public class Destination {
         this.client = client;
     }
 
-    public Course getCourse() {
+    public Course getLigneCommande() {
         return course;
     }
 
-    public void setCourse(Course course) {
+    public void setLigneCommande(Course course) {
         this.course = course;
     }
     

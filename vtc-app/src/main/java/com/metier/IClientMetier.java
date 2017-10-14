@@ -12,7 +12,7 @@ public interface IClientMetier {
     public void sinscrire();
     public void commander();
     public void seConnecter();
-    public void annulerCourse();
-    public void noterChauffeur(String numeroCourse);
-    public void consulterListeCourses();
+    public void annulerLigneCommande();
+    public void noterChauffeur(String numeroLigneCommande);
+    public void consulterListeLigneCommandes();
 }

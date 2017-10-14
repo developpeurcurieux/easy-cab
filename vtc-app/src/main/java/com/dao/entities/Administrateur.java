@@ -18,9 +18,10 @@ public class Administrateur extends User{
     public Administrateur() {
     }
 
-    public Administrateur(String genre, String nom, String prenom, String mdp, Date dateEntree) {
-        super(genre, nom, prenom, mdp, dateEntree);
+    public Administrateur(String genre, String nom, String prenom, String mdp, Date dateEntree, String telephone, String statut) {
+        super(genre, nom, prenom, mdp, dateEntree, telephone, statut);
     }
-    
+
+   
     
 }

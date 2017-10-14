@@ -23,7 +23,7 @@ import org.hibernate.validator.constraints.NotEmpty;
 
 @Entity
 @Inheritance(strategy=InheritanceType.SINGLE_TABLE)
-@DiscriminatorColumn(name="TYPE_PERSONNE")
+@DiscriminatorColumn(name="TYPE_PROFIL")
 public class User implements Serializable {
     @Id
     @GeneratedValue()
@@ -53,17 +53,25 @@ public class User implements Serializable {
     @Temporal(TemporalType.DATE)
     private Date dateArret;
 
+    private String telephone;
+    
+    private String statut;
+    
     public User() {
     }
 
-    public User(String genre, String nom, String prenom, String mdp, Date dateEntree) {
+    public User(String genre, String nom, String prenom, String mdp, Date dateEntree, String telephone, String statut) {
         this.genre = genre;
         this.nom = nom;
         this.prenom = prenom;
         this.mdp = mdp;
         this.dateEntree = dateEntree;
+        this.telephone = telephone;
+        this.statut = statut;
     }
 
+    
+    
     public Long getId() {
         return id;
     }
@@ -118,6 +126,22 @@ public class User implements Serializable {
 
     public void setDateArret(Date dateArret) {
         this.dateArret = dateArret;
+    }
+
+    public String getTelephone() {
+        return telephone;
+    }
+
+    public void setTelephone(String telephone) {
+        this.telephone = telephone;
+    }
+
+    public String getStatut() {
+        return statut;
+    }
+
+    public void setStatut(String statut) {
+        this.statut = statut;
     }
     
     

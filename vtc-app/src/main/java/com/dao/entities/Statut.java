@@ -28,7 +28,7 @@ public class Statut implements Serializable {
     private String libelle;
     
     @ManyToOne
-    @JoinColumn(name="FK_course")
+    @JoinColumn(name="fk_course")
     private Course course;
 
     public Statut() {

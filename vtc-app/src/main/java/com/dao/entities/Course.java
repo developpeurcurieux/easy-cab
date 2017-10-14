@@ -7,17 +7,17 @@
 package com.dao.entities;
 
 import java.io.Serializable;
-import java.util.Collection;
 import java.util.Date;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
-import org.springframework.format.annotation.DateTimeFormat;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 
 
@@ -25,39 +25,46 @@ import org.springframework.format.annotation.DateTimeFormat;
 public class Course implements Serializable {
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
+    private Long idCourse;
     
-    @DateTimeFormat(pattern="yyyy-MM-dd")
+    @Temporal(TemporalType.TIMESTAMP)
     private Date dateCourse;
     
     private double prix;
     
     @ManyToOne
-    @JoinColumn(name="FK_Commande")
+    @JoinColumn(name="fk_commande")
     private Commande commande;
     
     @ManyToOne
-    @JoinColumn(name="FK_Service")
+    @JoinColumn(name="fk_service")
     private Service service;
     
-    @OneToMany(mappedBy="course")
-    private Collection<Statut> status;
+    @OneToOne(mappedBy="course", cascade=CascadeType.REMOVE)
+    private Statut statut;
 
-    @OneToOne(mappedBy="course")
+    @OneToOne(mappedBy="course", cascade=CascadeType.DETACH)
     private Notation notation;
     
-    @OneToOne(mappedBy="course")
-    private Commentaire commentaire;
+    @OneToOne
+    @JoinColumn(name="fk_destination")
+    private Destination destination;
 
+    @OneToOne(mappedBy="course")
+    private Virement virement;
+    
+    
+    
     public Course() {
     }
 
-    public Course(Date dateCourse, double prix, Commande commande, Service service, Collection<Statut> status, Commentaire commentaire) {
+    public Course(Date dateCourse, double prix, Commande commande, Service service, Statut statut, Destination destination) {
         this.dateCourse = dateCourse;
         this.prix = prix;
         this.commande = commande;
         this.service = service;
-        this.status = status;
-        this.commentaire = commentaire;
+        this.statut = statut;
+        this.destination = destination;
     }
 
     public Date getDateCourse() {
@@ -92,12 +99,12 @@ public class Course implements Serializable {
         this.service = service;
     }
 
-    public Collection<Statut> getStatus() {
-        return status;
+    public Statut getStatut() {
+        return statut;
     }
 
-    public void setStatus(Collection<Statut> status) {
-        this.status = status;
+    public void setStatut(Statut statut) {
+        this.statut = statut;
     }
 
     public Notation getNotation() {
@@ -108,14 +115,21 @@ public class Course implements Serializable {
         this.notation = notation;
     }
 
-    public Commentaire getCommentaire() {
-        return commentaire;
+    public Destination getDestination() {
+        return destination;
     }
 
-    public void setCommentaire(Commentaire commentaire) {
-        this.commentaire = commentaire;
+    public void setDestination(Destination destination) {
+        this.destination = destination;
     }
-    
-    
+
+    public Virement getVirement() {
+        return virement;
+    }
+
+    public void setVirement(Virement virement) {
+        this.virement = virement;
+    }
+
     
 }

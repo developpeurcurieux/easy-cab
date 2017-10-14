@@ -18,41 +18,19 @@ import org.hibernate.validator.constraints.NotEmpty;
 
 
 @Entity
-@DiscriminatorValue("VO")
+@DiscriminatorValue("VOITURE")
 public class Voiture extends Vehicule {
-   
-
-    @ManyToMany(mappedBy="voitures")
-    private Collection<Service> services;
     
     @ManyToOne
-    @JoinColumn(name="FK_chauffeur")
+    @JoinColumn(name="fk_chauffeur")
     private Chauffeur chauffeur;
 
     public Voiture() {
     }
 
-    public Voiture(Collection<Service> services, Chauffeur chauffeur, String numeroCarteGrise, String nom, String marque, Long nombrePlaces, String motorisation, double puissance) {
-        super(numeroCarteGrise, nom, marque, nombrePlaces, motorisation, puissance);
-        this.services = services;
-        this.chauffeur = chauffeur;
-    }
-
-    public Voiture(String numeroCarteGrise, String nom, String marque, Long nombrePlaces, String motorisation, double puissance) {
-        super(numeroCarteGrise, nom, marque, nombrePlaces, motorisation, puissance);
-    }
-
     public Voiture(Chauffeur chauffeur, String numeroCarteGrise, String nom, String marque, Long nombrePlaces, String motorisation, double puissance) {
         super(numeroCarteGrise, nom, marque, nombrePlaces, motorisation, puissance);
         this.chauffeur = chauffeur;
-    }
-
-    public Collection<Service> getServices() {
-        return services;
-    }
-
-    public void setServices(Collection<Service> services) {
-        this.services = services;
     }
 
     public Chauffeur getChauffeur() {
@@ -63,5 +41,6 @@ public class Voiture extends Vehicule {
         this.chauffeur = chauffeur;
     }
 
+  
     
 }
