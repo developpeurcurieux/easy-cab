@@ -9,6 +9,7 @@ package com.dao.entities;
 import java.util.Collection;
 import java.util.Date;
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
@@ -36,7 +37,7 @@ public class Client extends User {
     @OneToMany(mappedBy="client")
     private Collection<Commande> commandes;
 
-    @OneToOne(mappedBy="client", cascade=CascadeType.REMOVE) 
+    @OneToOne(cascade=CascadeType.REMOVE) 
     private CarteBancaire carteBancaire;
     
     @OneToOne(mappedBy="client")

@@ -14,6 +14,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.validation.constraints.Size;
 import org.hibernate.validator.constraints.NotEmpty;
+import org.springframework.format.annotation.DateTimeFormat;
 
 
 @Entity
@@ -30,9 +31,10 @@ public class CarteBancaire implements Serializable {
     
     @NotEmpty
     @Size(min=2, max=100)
-    private String nomTitulaireCB;
+    private String nomTitulaire;
     
     @NotEmpty
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date dateExpiration;
    
     @OneToOne
@@ -42,19 +44,19 @@ public class CarteBancaire implements Serializable {
     public CarteBancaire() {
     }
 
-    public CarteBancaire(Long numeroCarte, String typeCarte, Long codeCryptographique, String nomTitulaireCB, Client client) {
+    public CarteBancaire(Long numeroCarte, String typeCarte, Long codeCryptographique, String nomTitulaire, Client client) {
         this.numeroCarte = numeroCarte;
         this.typeCarte = typeCarte;
         this.codeCryptographique = codeCryptographique;
-        this.nomTitulaireCB = nomTitulaireCB;
+        this.nomTitulaire = nomTitulaire;
         this.client = client;
     }
 
-    public CarteBancaire(Long numeroCarte, String typeCarte, Long codeCryptographique, String nomTitulaireCB) {
+    public CarteBancaire(Long numeroCarte, String typeCarte, Long codeCryptographique, String nomTitulaire) {
         this.numeroCarte = numeroCarte;
         this.typeCarte = typeCarte;
         this.codeCryptographique = codeCryptographique;
-        this.nomTitulaireCB = nomTitulaireCB;
+        this.nomTitulaire = nomTitulaire;
     }
 
     public Long getNumeroCarte() {
@@ -81,12 +83,12 @@ public class CarteBancaire implements Serializable {
         this.codeCryptographique = codeCryptographique;
     }
 
-    public String getNomTitulaireCB() {
-        return nomTitulaireCB;
+    public String getNomTitulaire() {
+        return nomTitulaire;
     }
 
-    public void setNomTitulaireCB(String nomTitulaireCB) {
-        this.nomTitulaireCB = nomTitulaireCB;
+    public void setNomTitulaire(String nomTitulaire) {
+        this.nomTitulaire = nomTitulaire;
     }
 
     public Client getClient() {
