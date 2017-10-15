@@ -37,9 +37,9 @@ public class Client extends User {
     @OneToMany(mappedBy="client")
     private Collection<Commande> commandes;
 
-    @OneToOne(cascade=CascadeType.REMOVE)
-    @JoinColumn(name="fk_carte_bancaire")
+    @OneToOne(mappedBy = "client", cascade = CascadeType.ALL, orphanRemoval = true)
     private CarteBancaire carteBancaire;
+    
     
     @OneToOne(mappedBy="client")
     private Destination destination;
@@ -92,6 +92,8 @@ public class Client extends User {
     public void setCarteBancaire(CarteBancaire carteBancaire) {
         this.carteBancaire = carteBancaire;
     }
+
+   
 
     public Destination getDestination() {
         return destination;

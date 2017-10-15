@@ -52,7 +52,10 @@ public class AccueilController {
         }
         
         System.out.println(client.getDateNaissance());
-        
+        //
+        ////////
+        // IL FAUT UTILISER clientMetier pour sauvegarder le client
+        //
         client.setDateEntree(new Date());
         client.setStatut("active");
         clientRepository.save(client);
