@@ -9,9 +9,9 @@ package com.dao.entities;
 import java.util.Collection;
 import java.util.Date;
 import javax.persistence.CascadeType;
-import javax.persistence.Column;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import org.hibernate.validator.constraints.Email;
@@ -37,7 +37,8 @@ public class Client extends User {
     @OneToMany(mappedBy="client")
     private Collection<Commande> commandes;
 
-    @OneToOne(cascade=CascadeType.REMOVE) 
+    @OneToOne(cascade=CascadeType.REMOVE)
+    @JoinColumn(name="fk_carte_bancaire")
     private CarteBancaire carteBancaire;
     
     @OneToOne(mappedBy="client")

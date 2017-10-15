@@ -90,6 +90,11 @@ public class Virement implements Serializable {
     public void setChauffeur(Chauffeur chauffeur) {
         this.chauffeur = chauffeur;
     }
-    
-    
+
+    @Override
+    public String toString() {
+        return "Virement{" + "idVirement=" + idVirement + ", dateVirement=" 
+                + dateVirement + ", montant=" + montant + ", course=" + course 
+                + ", chauffeur=" + chauffeur + '}';
+    }
 }
