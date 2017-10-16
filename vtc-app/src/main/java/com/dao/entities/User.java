@@ -15,10 +15,10 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-import org.hibernate.validator.constraints.NotEmpty;
+
+import org.springframework.format.annotation.DateTimeFormat;
 
 
 @Entity
@@ -29,28 +29,28 @@ public class User implements Serializable {
     @GeneratedValue()
     private Long id;
     
-    @NotEmpty
+    @NotNull
     @Column(length=1)
     private String genre;
     
-    @NotEmpty
+    @NotNull
     @Size(min=2, max=100)
     private String nom;
     
-    @NotEmpty
+    @NotNull
     @Size(min=2, max=100)
     private String prenom;
     
-    @NotEmpty
+    @NotNull
     @Size(min=4, max=255)
     private String mdp;
     
-    @NotEmpty
-    @Temporal(TemporalType.DATE)
+    @NotNull
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date dateEntree;
     
     
-    @Temporal(TemporalType.DATE)
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date dateArret;
 
     private String telephone;

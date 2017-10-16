@@ -10,6 +10,7 @@ import com.dao.entities.CarteBancaire;
 import com.dao.entities.Client;
 import com.dao.repository.ICarteBancaireRepository;
 import com.dao.repository.IClientRepository;
+import com.metier.ClientMetierImpl;
 import java.util.Date;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +28,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class AccueilController {
     @Autowired
     private IClientRepository clientRepository;
+    @Autowired
+    private ClientMetierImpl clientMetier;
     @Autowired
     private ICarteBancaireRepository cbRepository;
     
@@ -94,20 +97,24 @@ public class AccueilController {
     
     @RequestMapping(value="/seConnecter", method=RequestMethod.GET)
     public String seConnecter(Model model) {
+   
+        // peutetre ca bloque especeClient
         model.addAttribute("client", new Client());
         return "connexionClient";
         
     }
     
     @RequestMapping(value="/espaceClient")
-    public String espaceClient(Model model, @Valid Client client, BindingResult bindingResult,
-            @RequestParam(name="email") String email ) {
+    public String espaceClient(Model model, @Valid Client client, BindingResult bindingResult) {
+           
         if(bindingResult.hasErrors()) {
             return "connexionClient";
         }
       
-        Client c = clientRepository.findByEmail(email);
-       
+        
+        Client c = clientRepository.findByEmail("martin-pro@gmail.com");
+        // il faut verifier le mot de passe
+        
         model.addAttribute("client", c);
         
         return "espaceClient";
