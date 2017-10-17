@@ -27,11 +27,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 @RequestMapping("/accueil")
 public class AccueilController {
     @Autowired
-    private IClientRepository clientRepository;
-    @Autowired
     private ClientMetierImpl clientMetier;
-    @Autowired
-    private ICarteBancaireRepository cbRepository;
+   
     
     
     
@@ -54,14 +51,11 @@ public class AccueilController {
             return "formInscription";
         }
         
-        System.out.println(client.getDateNaissance());
-        //
-        ////////
-        // IL FAUT UTILISER clientMetier pour sauvegarder le client
-        //
+     
         client.setDateEntree(new Date());
         client.setStatut("active");
-        clientRepository.save(client);
+        
+        clientMetier.inscrireClient(client);
         
         model.addAttribute("idClient", client.getId());
         model.addAttribute("carteBancaire", new CarteBancaire());
@@ -95,6 +89,9 @@ public class AccueilController {
 
     }
     
+    // Connection Client
+    
+    
     @RequestMapping(value="/seConnecter", method=RequestMethod.GET)
     public String seConnecter(Model model) {
    
@@ -105,14 +102,16 @@ public class AccueilController {
     }
     
     @RequestMapping(value="/espaceClient")
-    public String espaceClient(Model model, @Valid Client client, BindingResult bindingResult) {
+    public String espaceClient(Model model, @Valid Client client, 
+            @RequestParam("email") String email, 
+            BindingResult bindingResult) {
            
         if(bindingResult.hasErrors()) {
             return "connexionClient";
         }
       
         
-        Client c = clientRepository.findByEmail("martin-pro@gmail.com");
+        Client c = clientMetier.connecterClient(email);
         // il faut verifier le mot de passe
         
         model.addAttribute("client", c);

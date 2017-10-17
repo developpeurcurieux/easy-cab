@@ -1,49 +1,38 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.metier;
 
+import com.dao.entities.Client;
+import com.dao.repository.IClientRepository;
 import javax.transaction.Transactional;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-/**
- *
- * @author cdi213
- */
 @Service
 @Transactional
 public class ClientMetierImpl implements IClientMetier {
-
+    @Autowired
+    IClientRepository clientRepository;
+    
     @Override
-    public void sinscrire() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public Client inscrireClient(Client client) {
+        if(client != null) {
+            clientRepository.save(client);
+            return client;
+        }
+        else {
+           throw new RuntimeException("client invalide ");
+        }
     }
 
     @Override
-    public void commander() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public Client connecterClient(String email) {
+        if(email != null || !email.isEmpty()) {
+            Client c = clientRepository.findByEmail(email);
+            return c;
+        }
+        else {
+            throw new RuntimeException("client introuvable ");
+        }
     }
 
-    @Override
-    public void seConnecter() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void annulerLigneCommande() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void noterChauffeur(String numeroLigneCommande) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void consulterListeLigneCommandes() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
     
 }

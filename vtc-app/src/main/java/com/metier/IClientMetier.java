@@ -6,13 +6,19 @@
 
 package com.metier;
 
+import com.dao.entities.Client;
+
 
 
 public interface IClientMetier {
-    public void sinscrire();
-    public void commander();
-    public void seConnecter();
-    public void annulerLigneCommande();
+    public Client inscrireClient(Client client);
+    public Client connecterClient(String email);
+   
+    /*
+    public Course commander();
+    public Course annulerCourse();
     public void noterChauffeur(String numeroLigneCommande);
-    public void consulterListeLigneCommandes();
+    public List consulterListeCourses();
+    public List consulterListeCommandes
+    */
 }
