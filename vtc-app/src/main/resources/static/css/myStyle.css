@@ -1,13 +1,19 @@
 body{
-    background-color: #403030; /* dark gray */
+  /*  background-color: #403030;  dark gray */
+ background-image: linear-gradient(to right, #29323c 0%, #485563 100%);
+
     /* blue #4EB1BA */
     /* gray white #E9E9E9 */
     /* dark gray  #222930;  */
 }
 
-h1, table, p {
-    color: #403030;
+h1, h2, table, p {
+    color: #4EB1BA;
 /*    background-color: #222930;*/
+}
+
+.blackPanel {
+    background-color: #E9E9E9;
 }
 
 .spacer {

@@ -45,7 +45,7 @@ public class User implements Serializable {
     @Size(min=4, max=255)
     private String mdp;
     
-    @NotNull
+    
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date dateEntree;
     

@@ -6,13 +6,15 @@
 
 package com.metier;
 
+import com.dao.entities.CarteBancaire;
 import com.dao.entities.Client;
 
 
 
 public interface IClientMetier {
     public Client inscrireClient(Client client);
-    public Client connecterClient(String email);
+    public Client connecterClient(String email, String mdp);
+    public void enregisterCB(Client client, CarteBancaire carteBancaire);
    
     /*
     public Course commander();

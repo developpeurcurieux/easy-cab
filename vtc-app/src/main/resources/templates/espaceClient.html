@@ -20,10 +20,34 @@ and open the template in the editor.
     <body>
         <div layout:fragment="content" >
             <div class="container">
-                <h1>Bienvenue </h1>
-                <p>
-                    <label th:text="${client.nom}"></label> 
-                </p>
+                <div class="row">
+                <h2>Bienvenue <small th:text="${client.prenom}" class=""></small></h2>
+                </div>
+             
+                <div class="row">
+                    <div class="panel panel-info col-md-4 col-md-offset-0 blackPanel">
+                        <div class="panel panel-heading">Course</div>
+                        <div class="panel panel-body">
+                            
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="panel panel-info col-md-4 col-md-offset-0 blackPanel">
+                        <div class="panel panel-heading">Infos</div>
+                        <div class="panel panel-body">
+                            
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="panel panel-info col-md-4 col-md-offset-0 blackPanel">
+                        <div class="panel panel-heading">Message</div>
+                        <div class="panel panel-body">
+                            
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </body>

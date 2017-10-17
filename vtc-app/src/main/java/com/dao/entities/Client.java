@@ -13,9 +13,7 @@ import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
-import javax.validation.constraints.NotNull;
-
-import org.hibernate.validator.constraints.Email;
+import org.hibernate.validator.constraints.NotEmpty;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -28,8 +26,7 @@ public class Client extends User {
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date dateNaissance;
     
-    @NotNull
-    @Email
+    @NotEmpty
     private String email;
     
     @OneToMany(mappedBy="client", cascade=CascadeType.DETACH)
@@ -104,5 +101,11 @@ public class Client extends User {
         this.destination = destination;
     }
 
+    @Override
+    public String toString() {
+        return "Client{" + "dateNaissance=" + dateNaissance + ", email=" + email + ", adresses=" + adresses + ", commandes=" + commandes + ", carteBancaire=" + carteBancaire + ", destination=" + destination + '}';
+    }
+
    
+    
 }

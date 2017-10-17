@@ -21,13 +21,14 @@ and open the template in the editor.
         <div layout:fragment="content" >
             <div class="container">
                 <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3 col-sm-offset-3 spacer">
+                   
                     <div class="panel panel-default ">
                         <div class="panel-heading">Détails Carte Bancaire <img th:src="@{/images/cb.png}" class="col-md-offset-3"/>
                         </div>
                         <div class="panel-body">
-                            <form th:action="@{/accueil/saveCB(id = ${idClient})}" th:object="${carteBancaire}" method="post">
+                            <form th:action="@{/accueil/saveCB}" th:object="${carteBancaire}" method="post">
                               
-                                <!-- radio type de care -->
+                              
                                 <div class="form-group">
                                     <label class="control-label">Type de carte</label>
                                     <div class="row" />
@@ -35,13 +36,14 @@ and open the template in the editor.
                                     <input  type="radio"  th:value="Electron" th:field="*{typeCarte}" class="row"> Electron </input>
                                     <input  type="radio"  th:value="MasterCard" th:field="*{typeCarte}" class="row"> Master Card </input>
                                     <div class="alert alert-danger" th:errors="*{typeCarte}"></div>   
+                                    
                                 </div>
+                            
                                 
-                                <!--
                                 <div class="form-group">
                                     <label class="control-label">Titulaire de la carte</label>
-                                    <input type="text"  th:field="*{nomTitulaireCB}" class="form-control"/>
-                                     <div class="alert alert-danger" th:errors="*{nomTitulaireCB}"></div>
+                                    <input type="text"  th:field="*{nomTitulaire}" class="form-control"/>
+                                     <div class="alert alert-danger" th:errors="*{nomTitulaire}"></div>
                                 </div>
                                 
                                 <div class="form-group">
@@ -60,7 +62,7 @@ and open the template in the editor.
                                      <div class="alert alert-danger" th:errors="*{codeCryptographique}"></div>
                                 </div>
                                 
-                                -->
+                                
                                 <div>
                                     <button type="submit" class="col-md-2 col-md-offset-10 btn btn-success">ok</button>
                                 </div>

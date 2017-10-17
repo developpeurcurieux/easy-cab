@@ -8,33 +8,32 @@ package com.dao.entities;
 
 import java.io.Serializable;
 import java.util.Date;
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.format.annotation.DateTimeFormat;
 
 
 @Entity
 public class CarteBancaire implements Serializable {
     @Id
-    @NotEmpty
+    @NotNull
     private Long numeroCarte;
     
-    @NotEmpty
+    @NotNull
     private String typeCarte;
     
-    @NotEmpty
+    @NotNull
     private Long codeCryptographique;
     
-    @NotEmpty
+    @NotNull
     @Size(min=2, max=100)
     private String nomTitulaire;
     
-    @NotEmpty
+    @NotNull
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date dateExpiration;
    
