@@ -19,7 +19,7 @@ public interface IClientMetier {
     /*
     public Course commander();
     public Course annulerCourse();
-    public void noterChauffeur(String numeroLigneCommande);
+    public Course noterChauffeur(Course course);
     public List consulterListeCourses();
     public List consulterListeCommandes
     */

@@ -53,7 +53,6 @@ public class ClientController {
         Client c = clientMetier.connecterClient(internaute.getEmail(), internaute.getMdp());
      
         if(c != null) {
-            System.out.println("====> client non null");
             model.addAttribute("client", c);
             return "espaceClient";
         }
@@ -62,8 +61,7 @@ public class ClientController {
         }
         
     }
-    
-    
+   
     @RequestMapping(value="/sinscrire", method=RequestMethod.GET)
     public String sinscrire(Model model) {
         model.addAttribute("client", new Client());
@@ -93,7 +91,7 @@ public class ClientController {
     }
     
     @RequestMapping(value="/saveCB", method = RequestMethod.POST)
-    public String enregistrerCarteBancaire(ModelMap model, @Valid CarteBancaire carteBancaire, BindingResult bindingResult, @ModelAttribute("client") Client client) {
+    public String enregistrerCarteBancaire(Model model, @Valid CarteBancaire carteBancaire, BindingResult bindingResult, @ModelAttribute("client") Client client) {
         System.out.println(client);
         
         if(bindingResult.hasErrors()) {
