@@ -43,3 +43,15 @@ h1, h2, table, p {
     
     
 }
+
+#scene_inscription {
+    background: url(../images/photo_connexion.png) no-repeat center top;
+    margin-top: 60px;
+    padding-top:10px;
+    text-align:center;
+    min-height: 600px;
+    background-position: center center;
+    
+    
+    
+}
