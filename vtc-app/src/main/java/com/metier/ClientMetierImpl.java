@@ -51,8 +51,28 @@ public class ClientMetierImpl implements IClientMetier {
                 carteBancaire.setClient(client);
                 carteBancaireRepository.save(carteBancaire);
             }
-        }        
+            else {
+                throw new RuntimeException("carte bancaire invalide");
+            }
+        }
+        else {
+            throw new RuntimeException("client invalide ou null");
+        }
+        
     }
+
+    @Override
+    public Client chercherClient(Long id_client) {
+           Client c = clientRepository.findOne(id_client);
+           if(c == null) {
+               throw new RuntimeException("client introuvable");
+           }
+           else {
+               return c;
+           }
+    }
+    
+    
     
     
 

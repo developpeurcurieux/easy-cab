@@ -24,7 +24,7 @@ h1, h2, table, p {
 #scene {
     
     min-height:400px;
-   margin-top: 60px;
+    margin-top: 60px;
     padding-top:10px;
     background:url(../images/accueil_photo2.jpg) no-repeat center -200px;
     text-align:center;
@@ -33,14 +33,12 @@ h1, h2, table, p {
 }
 
 #scene_connexion {
-    background: url(../images/photo_connexion.png) no-repeat center top;
+    min-height:400px;
+    background: url(../images/photo_connexion.png) no-repeat center -400px;
     margin-top: 60px;
     padding-top:10px;
     text-align:center;
-    min-height: 600px;
-    background-position: center center;
-    
-    
+
     
 }
 

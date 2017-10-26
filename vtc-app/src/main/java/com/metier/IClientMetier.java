@@ -15,6 +15,7 @@ public interface IClientMetier {
     public Client inscrireClient(Client client);
     public Client connecterClient(String email, String mdp);
     public void enregisterCB(Client client, CarteBancaire carteBancaire);
+    public Client chercherClient(Long id_client);
    
     /*
     public Course commander();

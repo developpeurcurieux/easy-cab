@@ -27,9 +27,9 @@ and open the template in the editor.
                         <div class="panel-heading">Détails Carte Bancaire <img th:src="@{/images/cb.png}" class="col-md-offset-3"/>
                         </div>
                         <div class="panel-body">
-                            <form th:action="@{/accueil/saveCB}" th:object="${carteBancaire}" method="post">
+                            <form th:action="@{/saveCB?(id = ${client.id})}" th:object="${carteBancaire}" method="post">
                               
-                              
+                            
                                 <div class="form-group">
                                     <label class="control-label">Type de carte</label>
                                     <div class="row" />
