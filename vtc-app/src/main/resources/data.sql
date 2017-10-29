@@ -16,9 +16,6 @@ VALUES
 ('F', 'Da Silva', 'Cyntia','323CARTEPRO677', '1980-10-10', NOW(),'active', 'vtcpro-cyntia@gmail.com'),
 ('F', 'Simon', 'Nathalie', '387CARTEPRO778', '1991-03-12', NOW(), 'active', 'vtcpro-nathalie@gmail.com');
 
-
-
-
 INSERT INTO adresse 
 (numero, voie, complement, code_postal, ville, pays,statut, fk_client )
 VALUES 
@@ -35,13 +32,21 @@ VALUES
 ('01', 'avenue', 'de jean perrin', '92110', 'Asniers', 'France', 'active', '323CARTEPRO677'),
 ('16', 'rue', 'hauts de haussman', '75012', 'Paris', 'France', 'active', '387CARTEPRO778');
 
-
-
-
-
-
-INSERT INTO prix (montant)
+INSERT INTO prix (nom, montant)
 VALUES
-(105.5),
-(5),
-(10);
+("standard", 10),
+("familly",20),
+("vip", 40);
+
+INSERT INTO tva(nom, montant) 
+VALUES
+("client", 10), 
+("entreprise", 20);
+
+
+INSERT INTO service(nom, quantite_voiture, fk_tva, fk_prix)   
+VALUES
+("standard", 20, (SELECT id_tva FROM tva WHERE nom = "client" LIMIT 1), (SELECT id_prix FROM prix WHERE nom = "standard" LIMIT 1)),
+("familly", 5, (SELECT id_tva FROM tva WHERE nom = "client" LIMIT 1), (SELECT id_prix FROM prix WHERE nom = "familly" LIMIT 1)),
+("vip", 5, (SELECT id_tva FROM tva WHERE nom = "client" LIMIT 1), (SELECT id_prix FROM prix WHERE nom = "vip" LIMIT 1));
+

@@ -30,7 +30,7 @@ public class Service implements Serializable {
     private Long idService;
     
     @NotEmpty
-    @Size(min=4, max=50)
+    @Size(min=3, max=50)
     private String nom;
     
     private Long quantiteVoiture;

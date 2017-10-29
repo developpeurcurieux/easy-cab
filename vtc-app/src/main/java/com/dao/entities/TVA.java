@@ -22,6 +22,7 @@ public class TVA implements Serializable {
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Long idTva;
     
+    private String nom;
     private double montant;
 
     @OneToMany(mappedBy="tva")
@@ -31,7 +32,8 @@ public class TVA implements Serializable {
     public TVA() {
     }
 
-    public TVA(double montant, Collection<Service> services) {
+    public TVA(String nom, double montant, Collection<Service> services) {
+        this.nom = nom;
         this.montant = montant;
         this.services = services;
     }
@@ -58,6 +60,21 @@ public class TVA implements Serializable {
 
     public void setServices(Collection<Service> services) {
         this.services = services;
+    }
+
+    public String getNom() {
+        return nom;
+    }
+
+    public void setNom(String nom) {
+        this.nom = nom;
+    }
+
+    
+
+    @Override
+    public String toString() {
+        return "TVA{" + "idTva=" + idTva + ", nom=" + nom + ", montant=" + montant + ", services=" + services + '}';
     }
 
     

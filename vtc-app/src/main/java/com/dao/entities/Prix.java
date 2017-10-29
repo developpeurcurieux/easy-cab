@@ -20,6 +20,7 @@ public class Prix implements Serializable {
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Long idPrix;
     
+    private String nom;
     private double montant;
 
     public Prix() {
@@ -44,6 +45,21 @@ public class Prix implements Serializable {
     public void setMontant(double montant) {
         this.montant = montant;
     }
+
+    public String getNom() {
+        return nom;
+    }
+
+    public void setNom(String nom) {
+        this.nom = nom;
+    }
+
+    @Override
+    public String toString() {
+        return "Prix{" + "idPrix=" + idPrix + ", nom=" + nom + ", montant=" + montant + '}';
+    }
+
+   
 
     
 }
