@@ -16,26 +16,80 @@ and open the template in the editor.
         <meta charset="UTF-8" />
         <link rel="stylesheet" type="text/css" th:href="@{/css/myStyle.css}" />
         
+      
     </head>
     <body>
         <div layout:fragment="content">
             <div class="container">
                 <div class="col-md-4 col-md-offset-4 spacer">
+                    
+                      <button class="btn btn-primary"><span class="glyphicon glyphicon-plane" /> Aéroport </button>        
                     <div class="panel panel-info">
                         <div class="panel-heading">Informations pour la réservation</div>
                         <div class="panel-body">
-                            <form th:action="@{/validationCommande}" th:object="${destination}" method="post">
-                                <div class="form-group">
-                                    <input class="form-control" type="radio" th:name="choixDestination" th:value="aeroport" th:field="*{destination}"> Aeroport </input>
-                                    <input class="form-control" type="radio" th:name="choixDestination" th:value="gare" th:field="*{destination}"> Gare </input>
-                                    <input class="form-control" type="radio" th:name="choixDestination" th:value="ville" th:field="*{destination}"> Ville </input>
+                          
+                            <form th:action="@{/confirmationCommande}" th:object="${memoCourse}" method="post">
+                               
+                              
+                                
+                                <div  class="form-group">
+                                    <select th:field="*{choixAeroport}" size="1" class=" form-control">
+                                        <option th:each=" type : *{listAeroport}" th:value="${type}" th:text="${type}"></option>
+                                    </select>
                                 </div>
+                                
+                                <label>Service</label>
+                                <div  class="form-group">
+                                    <select th:field="*{choixService}" size="1" class=" form-control">
+                                        <option th:each=" type : *{listServices}" th:value="${type}" th:text="${type}"></option>
+                                    </select>
+                                </div>
+                                
+                                
+                                
+                                
+                                <button type="submit" class="btn btn-primary">valider</button>
+                             <!--   
+                             
+                               <div  class="form-group">
+                                    <select name="nomAeroport" size="1" class=" form-control">
+                                        <option>Charles de Gaule</option>
+                                        <option>Orly</option>
+                                        <option>Beauvais</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label><span class="glyphicon glyphicon-briefcase" /> Gare</label>
+                                    <select name="nomAeroport" size="1" class=" form-control">
+                                        <option>Paris Gare du Nord</option>
+                                        <option>Paris Gare de Bercy</option>
+                                        <option>Paris Gare de Montparnasse</option>
+                                        <option>Cergy-prefecture</option>
+                                    </select>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label><span class="glyphicon glyphicon-road" /> Ville</label>
+                                    <select name="nomAeroport" size="1" class=" form-control">
+                                        <option>Paris</option>
+                                        <option>Cergy</option>
+                                        <option>Beauvais</option>
+                                    </select>
+                                </div>
+                             
+                             -->
                             </form>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        
+        <script>
+$(document).ready(function(){
+    $("button").click(function(){
+        $("form").hide();
+    });
+});
+</script>
     </body>
 </html>

@@ -34,6 +34,12 @@ public class Statut implements Serializable {
     public Statut() {
     }
 
+    public Statut(String libelle) {
+        this.libelle = libelle;
+    }
+
+    
+    
     public Statut(String libelle, Course course) {
         this.libelle = libelle;
         this.course = course;

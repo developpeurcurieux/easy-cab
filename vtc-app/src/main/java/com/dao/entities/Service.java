@@ -58,6 +58,12 @@ public class Service implements Serializable {
     public Service() {
     }
 
+    public Service(String nom) {
+        this.nom = nom;
+    }
+
+    
+    
     public Service(String nom, Long quantiteVoiture) {
         this.nom = nom;
         this.quantiteVoiture = quantiteVoiture;

@@ -8,10 +8,20 @@ package com.web.controllers;
 
 import com.dao.entities.CarteBancaire;
 import com.dao.entities.Client;
+import com.dao.entities.Commande;
+import com.dao.entities.Course;
 import com.dao.entities.Destination;
+import com.dao.entities.Service;
+import com.dao.entities.Statut;
+import com.dao.repository.ICommandeRepository;
+import com.dao.repository.ICourseRepository;
+import com.dao.repository.IDestinationRepository;
 import com.metier.ClientMetierImpl;
 import com.web.models.beans.Internaute;
+import com.web.models.beans.MemoCourse;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -27,10 +37,22 @@ import org.springframework.web.bind.annotation.RequestParam;
 @RequestMapping("/")
 public class ClientController {
     @Autowired
-    private Internaute internaute;
-    
+    private ICourseRepository courseRepository;
+    @Autowired
+    private ICommandeRepository commandeRepository;
+    @Autowired
+    private IDestinationRepository destinationRepository;
     @Autowired
     private ClientMetierImpl clientMetier;
+    
+    
+    
+    @Autowired
+    private Internaute internaute;
+    @Autowired
+    private MemoCourse memoCourse;
+    
+    
     
     @RequestMapping("/accueil")
     public String index() {
@@ -109,7 +131,7 @@ public class ClientController {
     
     @RequestMapping(value="/deconnexionClient")
     public String seDeconnecter() {
-        return "redirect:/";
+        return "redirect:/accueil";
     }
     
     
@@ -118,11 +140,49 @@ public class ClientController {
      * Course 
      */
     
-    @RequestMapping("/reserver") 
+    @RequestMapping("/reservation") 
     public String reserverVtc(Model model ) {
-        model.addAttribute("destination", new Destination());
+        model.addAttribute("memoCourse", memoCourse);
+        
+        List<String> allAeroport = new ArrayList();
+        allAeroport.add("Charles de gaule");
+        allAeroport.add("Orly");
+        
+        List<String> listServices = new ArrayList();
+        listServices.add("eco");
+        listServices.add("family");
+        listServices.add("vip");
+        
+        
+        
+        memoCourse.setListAeroport(allAeroport);
+        memoCourse.setListServices(listServices);
+        
+        model.addAttribute("allAeroport", allAeroport);
         
         return "formCommande";
+    }
+    
+    @RequestMapping("/confirmationCommande")
+    public String confirmerLaCommande(Model model, MemoCourse memoCourse) {
+        System.out.println(memoCourse);
+        Commande commande = new Commande();
+        Destination d = new Destination();
+        d.setAeroport(memoCourse.getChoixAeroport());
+        
+        Course c = new Course(new Date(), 100, commande, 
+                new Service("eco"), new Statut("en cours"), d);
+        commande.setModePaiement("carte bancaire");
+        
+        
+        d = destinationRepository.save(d);
+        commande = commandeRepository.save(commande);
+        c = courseRepository.save(c);
+        
+        model.addAttribute("idCourse", c.getIdCourse());
+        
+        return "confirmCommande";
+        
     }
     
     
@@ -130,9 +190,9 @@ public class ClientController {
     
     
     /***************************************************************************
-     *  TARIFICATION 
+     *  Tarification
      */
-    @RequestMapping(value="/tarifs")
+    @RequestMapping(value="/tarification")
     public String afficherLesPrix() {
         return "prixLigneCommandes";
     }

@@ -21,19 +21,16 @@ public class Destination implements Serializable {
     @Id
     @GeneratedValue()
     private Long idDestination;
+      
     
-    @NotEmpty
-    private String choixDestination;
-    
-    @NotEmpty
     @Size(min=2, max=100)
     private String ville;
     
-    @NotEmpty
+    
     @Size(min=2, max=100)
     private String aeroport;
     
-    @NotEmpty
+    
     @Size(min=2, max=100)
     private String gare;
     
@@ -96,14 +93,7 @@ public class Destination implements Serializable {
         this.course = course;
     }
 
-    public String getChoixDestination() {
-        return choixDestination;
-    }
-
-    public void setChoixDestination(String choixDestination) {
-        this.choixDestination = choixDestination;
-    }
-
+    
     public Course getCourse() {
         return course;
     }
@@ -114,9 +104,10 @@ public class Destination implements Serializable {
 
     @Override
     public String toString() {
-        return "Destination{" + "idDestination=" + idDestination + ", choixDestination=" + choixDestination + ", ville=" + ville + ", aeroport=" + aeroport + ", gare=" + gare + ", client=" + client + ", course=" + course + '}';
+        return "Destination{" + "idDestination=" + idDestination + ", ville=" + ville + ", aeroport=" + aeroport + ", gare=" + gare + ", client=" + client + ", course=" + course + '}';
     }
-    
+
+   
     
     
     

@@ -67,6 +67,15 @@ public class Course implements Serializable {
         this.destination = destination;
     }
 
+    public Long getIdCourse() {
+        return idCourse;
+    }
+
+    public void setIdCourse(Long idCourse) {
+        this.idCourse = idCourse;
+    }
+
+    
     public Date getDateCourse() {
         return dateCourse;
     }
@@ -131,5 +140,11 @@ public class Course implements Serializable {
         this.virement = virement;
     }
 
+    @Override
+    public String toString() {
+        return "Course{" + "idCourse=" + idCourse + ", dateCourse=" + dateCourse + ", prix=" + prix + ", commande=" + commande + ", service=" + service + ", statut=" + statut + ", notation=" + notation + ", destination=" + destination + ", virement=" + virement + '}';
+    }
+
+    
     
 }
