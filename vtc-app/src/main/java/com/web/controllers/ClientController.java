@@ -8,18 +8,15 @@ package com.web.controllers;
 
 import com.dao.entities.CarteBancaire;
 import com.dao.entities.Client;
-import com.dao.entities.Commande;
 import com.dao.entities.Course;
 import com.dao.entities.Destination;
 import com.dao.entities.Service;
-import com.dao.entities.Statut;
 import com.dao.repository.ICommandeRepository;
 import com.dao.repository.ICourseRepository;
 import com.dao.repository.IDestinationRepository;
 import com.metier.ClientMetierImpl;
 import com.web.models.beans.Internaute;
 import com.web.models.beans.MemoCourse;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import javax.validation.Valid;
@@ -51,6 +48,7 @@ public class ClientController {
     private Internaute internaute;
     @Autowired
     private MemoCourse memoCourse;
+   
     
     
     
@@ -58,6 +56,10 @@ public class ClientController {
     public String index() {
         return "accueil";
     }
+    
+    /***************************************************************************
+     * Client 
+     */
     
     @RequestMapping(value="/connexionClient", method=RequestMethod.GET)
     public String seConnecter(Model model) {
@@ -142,23 +144,17 @@ public class ClientController {
     
     @RequestMapping("/reservation") 
     public String reserverVtc(Model model ) {
-        model.addAttribute("memoCourse", memoCourse);
         
-        List<String> allAeroport = new ArrayList();
-        allAeroport.add("Charles de gaule");
-        allAeroport.add("Orly");
+        List<Service> listServices = clientMetier.listerLesServices();
+        List<String> listAeroport;
         
-        List<String> listServices = new ArrayList();
-        listServices.add("eco");
-        listServices.add("family");
-        listServices.add("vip");
+        
+        model.addAttribute("listServices", listServices);
+        model.addAttribute("destination", new Destination());
         
         
         
-        memoCourse.setListAeroport(allAeroport);
-        memoCourse.setListServices(listServices);
         
-        model.addAttribute("allAeroport", allAeroport);
         
         return "formCommande";
     }
@@ -166,20 +162,11 @@ public class ClientController {
     @RequestMapping("/confirmationCommande")
     public String confirmerLaCommande(Model model, MemoCourse memoCourse) {
         System.out.println(memoCourse);
-        Commande commande = new Commande();
-        Destination d = new Destination();
-        d.setAeroport(memoCourse.getChoixAeroport());
         
-        Course c = new Course(new Date(), 100, commande, 
-                new Service("eco"), new Statut("en cours"), d);
-        commande.setModePaiement("carte bancaire");
-        
-        
-        d = destinationRepository.save(d);
-        commande = commandeRepository.save(commande);
-        c = courseRepository.save(c);
+        Course c = clientMetier.commander();
         
         model.addAttribute("idCourse", c.getIdCourse());
+       
         
         return "confirmCommande";
         

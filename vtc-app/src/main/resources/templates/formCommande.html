@@ -28,20 +28,20 @@ and open the template in the editor.
                         <div class="panel-heading">Informations pour la réservation</div>
                         <div class="panel-body">
                           
-                            <form th:action="@{/confirmationCommande}" th:object="${memoCourse}" method="post">
+                            <form th:action="@{/confirmationCommande}" th:object="${destination}" method="post">
                                
                               
                                 
                                 <div  class="form-group">
-                                    <select th:field="*{choixAeroport}" size="1" class=" form-control">
+                                    <select th:field="*{aeroport}" size="1" class=" form-control">
                                         <option th:each=" type : *{listAeroport}" th:value="${type}" th:text="${type}"></option>
                                     </select>
                                 </div>
                                 
                                 <label>Service</label>
                                 <div  class="form-group">
-                                    <select th:field="*{choixService}" size="1" class=" form-control">
-                                        <option th:each=" type : *{listServices}" th:value="${type}" th:text="${type}"></option>
+                                    <select th:field="*{service}" size="1" class=" form-control">
+                                        <option th:each=" type : *{listServices}" th:value="${type.nom}" th:text="${type}"></option>
                                     </select>
                                 </div>
                                 

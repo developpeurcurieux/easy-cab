@@ -2,8 +2,11 @@ package com.metier;
 
 import com.dao.entities.CarteBancaire;
 import com.dao.entities.Client;
+import com.dao.entities.Course;
 import com.dao.repository.ICarteBancaireRepository;
 import com.dao.repository.IClientRepository;
+import com.dao.repository.IServiceRepository;
+import java.util.List;
 import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,6 +18,10 @@ public class ClientMetierImpl implements IClientMetier {
     IClientRepository clientRepository;
     @Autowired
     ICarteBancaireRepository carteBancaireRepository;
+    @Autowired
+    IServiceRepository serviceRepository;
+    
+    
     
     @Override
     public Client inscrireClient(Client client) {
@@ -71,6 +78,24 @@ public class ClientMetierImpl implements IClientMetier {
                return c;
            }
     }
+
+    @Override
+    public Course commander() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+   
+
+    @Override
+    public List listerLesServices() {
+        return serviceRepository.findAll();
+        
+    }
+    
+    
+    
+    
+    
     
     
     
