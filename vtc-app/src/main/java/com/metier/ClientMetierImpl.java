@@ -1,11 +1,17 @@
 package com.metier;
 
+import com.dao.entities.Aeroport;
 import com.dao.entities.CarteBancaire;
 import com.dao.entities.Client;
 import com.dao.entities.Course;
+import com.dao.entities.Gare;
+import com.dao.entities.Ville;
+import com.dao.repository.IAeroportRepository;
 import com.dao.repository.ICarteBancaireRepository;
 import com.dao.repository.IClientRepository;
+import com.dao.repository.IGareRepository;
 import com.dao.repository.IServiceRepository;
+import com.dao.repository.IVilleRepository;
 import java.util.List;
 import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,11 +22,17 @@ import org.springframework.stereotype.Service;
 public class ClientMetierImpl implements IClientMetier {
     @Autowired
     IClientRepository clientRepository;
+    
     @Autowired
     ICarteBancaireRepository carteBancaireRepository;
     @Autowired
     IServiceRepository serviceRepository;
-    
+    @Autowired
+    IAeroportRepository aeroportRepository;
+    @Autowired
+    IGareRepository gareRepository;
+    @Autowired
+    IVilleRepository villeRepository;
     
     
     @Override
@@ -91,6 +103,23 @@ public class ClientMetierImpl implements IClientMetier {
         return serviceRepository.findAll();
         
     }
+
+    @Override
+    public List<Aeroport> listerLesAeroports() {
+        return aeroportRepository.findAll();
+    }
+
+    @Override
+    public List<Gare> listerLesGares() {
+        return gareRepository.findAll();
+    }
+
+    @Override
+    public List<Ville> listerLesVilles() {
+        return villeRepository.findAll();
+    }
+    
+    
     
     
     

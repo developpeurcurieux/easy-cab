@@ -50,3 +50,23 @@ VALUES
 ("familly", 5, (SELECT id_tva FROM tva WHERE nom = "client" LIMIT 1), (SELECT id_prix FROM prix WHERE nom = "familly" LIMIT 1)),
 ("vip", 5, (SELECT id_tva FROM tva WHERE nom = "client" LIMIT 1), (SELECT id_prix FROM prix WHERE nom = "vip" LIMIT 1));
 
+INSERT INTO aeroport(nom, ville) 
+VALUES 
+("Paris-Orly", "Orly"),
+("Paris-Charles de Gaules", "Roissy"),
+("Beauvais", "Beauvais");
+
+INSERT INTO gare(nom, ville) 
+VALUES 
+("Gare de Lyon", "Paris"),
+("Gare de Bercy", "Paris"),
+("Gare du Nord", "Paris"),
+("Gare de Cergy-Prefecture", "Cergy");
+
+INSERT INTO ville(nom) 
+VALUES 
+("Cergy-prefecture"),
+("Herblay"),
+("Paris"),
+("Cergy le Haut"),
+("Cergy Saint Christophe");

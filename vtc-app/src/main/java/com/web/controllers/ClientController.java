@@ -6,14 +6,15 @@
 
 package com.web.controllers;
 
+import com.dao.entities.Aeroport;
 import com.dao.entities.CarteBancaire;
 import com.dao.entities.Client;
 import com.dao.entities.Course;
-import com.dao.entities.Destination;
+import com.dao.entities.Gare;
 import com.dao.entities.Service;
+import com.dao.entities.Ville;
 import com.dao.repository.ICommandeRepository;
 import com.dao.repository.ICourseRepository;
-import com.dao.repository.IDestinationRepository;
 import com.metier.ClientMetierImpl;
 import com.web.models.beans.Internaute;
 import com.web.models.beans.MemoCourse;
@@ -29,7 +30,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 //TODO ne pas oublier 'active' dans navbar 'accueil'
-
+//TODO http.authorizeRequests().antMatchers("/webjars/**").permitAll();
 @Controller
 @RequestMapping("/")
 public class ClientController {
@@ -37,8 +38,7 @@ public class ClientController {
     private ICourseRepository courseRepository;
     @Autowired
     private ICommandeRepository commandeRepository;
-    @Autowired
-    private IDestinationRepository destinationRepository;
+    
     @Autowired
     private ClientMetierImpl clientMetier;
     
@@ -145,16 +145,16 @@ public class ClientController {
     @RequestMapping("/reservation") 
     public String reserverVtc(Model model ) {
         
-        List<Service> listServices = clientMetier.listerLesServices();
-        List<String> listAeroport;
+        MemoCourse memoCourse = new MemoCourse(); 
         
+        memoCourse.setListServices(clientMetier.listerLesServices());
+        memoCourse.setListAeroports(clientMetier.listerLesAeroports());
+        memoCourse.setListGares(clientMetier.listerLesGares());
+        memoCourse.setListVilles(clientMetier.listerLesVilles());
         
-        model.addAttribute("listServices", listServices);
-        model.addAttribute("destination", new Destination());
-        
-        
-        
-        
+        System.out.println(memoCourse.getListVilles());
+        model.addAttribute("memoCourse", memoCourse);
+               
         
         return "formCommande";
     }
@@ -163,6 +163,7 @@ public class ClientController {
     public String confirmerLaCommande(Model model, MemoCourse memoCourse) {
         System.out.println(memoCourse);
         
+        System.out.println(memoCourse);
         Course c = clientMetier.commander();
         
         model.addAttribute("idCourse", c.getIdCourse());

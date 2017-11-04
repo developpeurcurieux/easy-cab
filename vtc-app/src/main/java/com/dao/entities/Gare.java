@@ -15,9 +15,8 @@ import javax.persistence.OneToOne;
 
 
 
-
 @Entity
-public class Aeroport implements Serializable {
+public class Gare implements Serializable {
     @Id
     private String nom;
     private String ville;
@@ -28,9 +27,10 @@ public class Aeroport implements Serializable {
     
     @OneToOne
     private Course course;
-         
 
-    public Aeroport() {
+    
+    
+    public Gare() {
     }
 
     public String getNom() {
@@ -67,7 +67,7 @@ public class Aeroport implements Serializable {
 
     @Override
     public String toString() {
-        return "Aeroport{" + "nom=" + nom + ", ville=" + ville + ", client=" + client + ", course=" + course + '}';
+        return "Gare{" + "nom=" + nom + ", ville=" + ville + ", client=" + client + ", course=" + course + '}';
     }
 
     

@@ -6,6 +6,10 @@
 
 package com.web.models.beans;
 
+import com.dao.entities.Aeroport;
+import com.dao.entities.Gare;
+import com.dao.entities.Service;
+import com.dao.entities.Ville;
 import java.util.List;
 import org.springframework.stereotype.Component;
 
@@ -18,23 +22,12 @@ public class MemoCourse {
     private String choixGare;
     private String choixService;
     
-    private List<String> listAeroport;
-    private List<String> listGares;
-    private List<String> listVilles;
-    private List<String> listServices;
+    private List<Aeroport> listAeroports;
+    private List<Gare> listGares;
+    private List<Ville> listVilles;
+    private List<Service> listServices;
 
     public MemoCourse() {
-    }
-
-    public MemoCourse(String choixAeroport, String choixVille, String choixGare, String choixService, List<String> listAeroport, List<String> listGares, List<String> listVilles, List<String> listServices) {
-        this.choixAeroport = choixAeroport;
-        this.choixVille = choixVille;
-        this.choixGare = choixGare;
-        this.choixService = choixService;
-        this.listAeroport = listAeroport;
-        this.listGares = listGares;
-        this.listVilles = listVilles;
-        this.listServices = listServices;
     }
 
     public String getChoixAeroport() {
@@ -69,41 +62,41 @@ public class MemoCourse {
         this.choixService = choixService;
     }
 
-    public List<String> getListAeroport() {
-        return listAeroport;
+    public List<Aeroport> getListAeroports() {
+        return listAeroports;
     }
 
-    public void setListAeroport(List<String> listAeroport) {
-        this.listAeroport = listAeroport;
+    public void setListAeroports(List<Aeroport> listAeroports) {
+        this.listAeroports = listAeroports;
     }
 
-    public List<String> getListGares() {
+    public List<Gare> getListGares() {
         return listGares;
     }
 
-    public void setListGares(List<String> listGares) {
+    public void setListGares(List<Gare> listGares) {
         this.listGares = listGares;
     }
 
-    public List<String> getListVilles() {
+    public List<Ville> getListVilles() {
         return listVilles;
     }
 
-    public void setListVilles(List<String> listVilles) {
+    public void setListVilles(List<Ville> listVilles) {
         this.listVilles = listVilles;
     }
 
-    public List<String> getListServices() {
+    public List<Service> getListServices() {
         return listServices;
     }
 
-    public void setListServices(List<String> listServices) {
+    public void setListServices(List<Service> listServices) {
         this.listServices = listServices;
     }
 
     @Override
     public String toString() {
-        return "MemoCourse{" + "choixAeroport=" + choixAeroport + ", choixVille=" + choixVille + ", choixGare=" + choixGare + ", choixService=" + choixService + ", listAeroport=" + listAeroport + ", listGares=" + listGares + ", listVilles=" + listVilles + ", listServices=" + listServices + '}';
+        return "MemoCourse{" + "choixAeroport=" + choixAeroport + ", choixVille=" + choixVille + ", choixGare=" + choixGare + ", choixService=" + choixService + ", listAeroports=" + listAeroports + ", listGares=" + listGares + ", listVilles=" + listVilles + ", listServices=" + listServices + '}';
     }
     
     

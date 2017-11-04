@@ -46,9 +46,20 @@ public class Course implements Serializable {
     @OneToOne(mappedBy="course", cascade=CascadeType.DETACH)
     private Notation notation;
     
+    
     @OneToOne
-    @JoinColumn(name="fk_destination")
-    private Destination destination;
+    @JoinColumn(name="fk_aeroport")
+    private Aeroport aeroport;
+    
+    @OneToOne
+    @JoinColumn(name="fk_ville")
+    private Ville ville;
+    
+    @OneToOne
+    @JoinColumn(name="fk_gare")
+    private Gare gare;
+    
+    
 
     @OneToOne(mappedBy="course")
     private Virement virement;
@@ -56,15 +67,6 @@ public class Course implements Serializable {
     
     
     public Course() {
-    }
-
-    public Course(Date dateCourse, double prix, Commande commande, Service service, Statut statut, Destination destination) {
-        this.dateCourse = dateCourse;
-        this.prix = prix;
-        this.commande = commande;
-        this.service = service;
-        this.statut = statut;
-        this.destination = destination;
     }
 
     public Long getIdCourse() {
@@ -75,7 +77,6 @@ public class Course implements Serializable {
         this.idCourse = idCourse;
     }
 
-    
     public Date getDateCourse() {
         return dateCourse;
     }
@@ -124,12 +125,28 @@ public class Course implements Serializable {
         this.notation = notation;
     }
 
-    public Destination getDestination() {
-        return destination;
+    public Aeroport getAeroport() {
+        return aeroport;
     }
 
-    public void setDestination(Destination destination) {
-        this.destination = destination;
+    public void setAeroport(Aeroport aeroport) {
+        this.aeroport = aeroport;
+    }
+
+    public Ville getVille() {
+        return ville;
+    }
+
+    public void setVille(Ville ville) {
+        this.ville = ville;
+    }
+
+    public Gare getGare() {
+        return gare;
+    }
+
+    public void setGare(Gare gare) {
+        this.gare = gare;
     }
 
     public Virement getVirement() {
@@ -142,9 +159,11 @@ public class Course implements Serializable {
 
     @Override
     public String toString() {
-        return "Course{" + "idCourse=" + idCourse + ", dateCourse=" + dateCourse + ", prix=" + prix + ", commande=" + commande + ", service=" + service + ", statut=" + statut + ", notation=" + notation + ", destination=" + destination + ", virement=" + virement + '}';
+        return "Course{" + "idCourse=" + idCourse + ", dateCourse=" + dateCourse + ", prix=" + prix + ", commande=" + commande + ", service=" + service + ", statut=" + statut + ", notation=" + notation + ", aeroport=" + aeroport + ", ville=" + ville + ", gare=" + gare + ", virement=" + virement + '}';
     }
 
+    
+    
     
     
 }

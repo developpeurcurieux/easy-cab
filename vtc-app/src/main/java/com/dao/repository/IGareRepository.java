@@ -6,11 +6,11 @@
 
 package com.dao.repository;
 
-import com.dao.entities.Destination;
+import com.dao.entities.Gare;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 
 
-public interface IDestinationRepository extends JpaRepository<Destination, Long>{
+public interface IGareRepository extends JpaRepository<Gare, String>{
 
 }

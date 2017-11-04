@@ -15,7 +15,32 @@ and open the template in the editor.
         <title>Easy Cab | Espace personnel</title>
         <meta charset="UTF-8" />
         <link rel="stylesheet" type="text/css" th:href="@{/css/myStyle.css}" />
-        
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script>
+            $(document).ready(function(){
+                $("#idGare").hide();
+                $("#idVille").hide();
+                $("#idAeroport").show();
+                 
+                 
+                $("#idBtnAeroport").click(function(){
+                    $("#idGare").hide();
+                    $("#idVille").hide();
+                    $("#idAeroport").show();
+                });
+                $("#idBtnGare").click(function(){
+                    $("#idAeroport").hide();
+                    $("#idVille").hide();
+                    $("#idGare").show();
+                });
+                $("#idBtnVille").click(function(){
+                    $("#idGare").hide();
+                    $("#idAeroport").hide();
+                    $("#idVille").show();
+                });
+            });
+                
+            </script>
       
     </head>
     <body>
@@ -23,28 +48,48 @@ and open the template in the editor.
             <div class="container">
                 <div class="col-md-4 col-md-offset-4 spacer">
                     
-                      <button class="btn btn-primary"><span class="glyphicon glyphicon-plane" /> Aéroport </button>        
+                    <button id="idBtnAeroport" class="btn btn-primary"><span class="glyphicon glyphicon-plane" /> Aéroport </button>        
+                    <button id="idBtnGare" class="btn btn-default"><span class="glyphicon glyphicon-briefcase" /> Gare </button>        
+                    <button id="idBtnVille" class="btn btn-warning"><span class="glyphicon glyphicon-road" /> Ville </button>        
+                    
                     <div class="panel panel-info">
                         <div class="panel-heading">Informations pour la réservation</div>
                         <div class="panel-body">
                           
-                            <form th:action="@{/confirmationCommande}" th:object="${destination}" method="post">
+                            <!-- rajouter javascript pour unique choix -->
+                            <form th:action="@{/confirmationCommande}" th:object="${memoCourse}" method="post">
                                
-                              
                                 
-                                <div  class="form-group">
-                                    <select th:field="*{aeroport}" size="1" class=" form-control">
-                                        <option th:each=" type : *{listAeroport}" th:value="${type}" th:text="${type}"></option>
+                                
+                                <div id="idAeroport" class="form-group">
+                                    <label>Aeroport</label>
+                                    <select th:field="*{choixAeroport}" size="1" class=" form-control">
+                                        <option th:each=" a : *{listAeroports}" th:value="${a.nom}" th:text="${a.nom}"></option>
                                     </select>
                                 </div>
                                 
-                                <label>Service</label>
-                                <div  class="form-group">
-                                    <select th:field="*{service}" size="1" class=" form-control">
-                                        <option th:each=" type : *{listServices}" th:value="${type.nom}" th:text="${type}"></option>
+                            
+                                <div id="idGare" class="form-group">
+                                    <label>Gare</label>
+                                    <select th:field="*{choixGare}" size="1" class="form-control">
+                                        <option th:each="g : *{listGares}" th:value="${g.nom}" th:text="${g.nom}"></option>
                                     </select>
                                 </div>
                                 
+                                <div id="idVille" class="form-group">
+                                     <label>Ville</label>
+                                    <select th:field="*{choixVille}" size="1" class="form-control">
+                                        <option th:each="v : *{listVilles}" th:value="${v.nom}" th:text="${v.nom}"></option>
+                                    </select>
+                                </div>
+                                   
+                               
+                                <div  class="form-group">
+                                    <label>Service</label>
+                                    <select th:field="*{choixService}" size="1" class=" form-control">
+                                        <option th:each=" s : *{listServices}" th:value="${s.nom}" th:text="${s.nom}"></option>
+                                    </select>
+                                </div>
                                 
                                 
                                 
@@ -85,11 +130,11 @@ and open the template in the editor.
             </div>
         </div>
         <script>
-$(document).ready(function(){
-    $("button").click(function(){
-        $("form").hide();
-    });
-});
-</script>
+            $(document).ready(function(){
+                $("button").click(function(){
+                    alert("ok");
+                });
+           });
+       </script>
     </body>
 </html>

@@ -15,12 +15,12 @@ import javax.persistence.OneToOne;
 
 
 
-
 @Entity
-public class Aeroport implements Serializable {
+public class Ville implements Serializable {
     @Id
     private String nom;
-    private String ville;
+   
+    
     
     @ManyToOne
     @JoinColumn(name="fk_client")
@@ -28,9 +28,8 @@ public class Aeroport implements Serializable {
     
     @OneToOne
     private Course course;
-         
 
-    public Aeroport() {
+    public Ville() {
     }
 
     public String getNom() {
@@ -41,13 +40,6 @@ public class Aeroport implements Serializable {
         this.nom = nom;
     }
 
-    public String getVille() {
-        return ville;
-    }
-
-    public void setVille(String ville) {
-        this.ville = ville;
-    }
 
     public Client getClient() {
         return client;
@@ -67,9 +59,8 @@ public class Aeroport implements Serializable {
 
     @Override
     public String toString() {
-        return "Aeroport{" + "nom=" + nom + ", ville=" + ville + ", client=" + client + ", course=" + course + '}';
+        return "Ville{" + "nom=" + nom + ", client=" + client + ", course=" + course + '}';
     }
-
     
     
     

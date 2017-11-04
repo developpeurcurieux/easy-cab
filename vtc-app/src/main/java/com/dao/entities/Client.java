@@ -40,7 +40,13 @@ public class Client extends User {
     
     
     @OneToOne(mappedBy="client")
-    private Destination destination;
+    private Aeroport aeroport;
+    
+    @OneToOne(mappedBy="client") 
+    private Gare gare;
+    
+    @OneToOne(mappedBy="client")
+    private Ville ville;
     
     public Client() {
     }
@@ -91,21 +97,38 @@ public class Client extends User {
         this.carteBancaire = carteBancaire;
     }
 
-   
-
-    public Destination getDestination() {
-        return destination;
+    public Aeroport getAeroport() {
+        return aeroport;
     }
 
-    public void setDestination(Destination destination) {
-        this.destination = destination;
+    public void setAeroport(Aeroport aeroport) {
+        this.aeroport = aeroport;
+    }
+
+    public Gare getGare() {
+        return gare;
+    }
+
+    public void setGare(Gare gare) {
+        this.gare = gare;
+    }
+
+    public Ville getVille() {
+        return ville;
+    }
+
+    public void setVille(Ville ville) {
+        this.ville = ville;
     }
 
     @Override
     public String toString() {
-        return "Client{" + "dateNaissance=" + dateNaissance + ", email=" + email + ", adresses=" + adresses + ", commandes=" + commandes + ", carteBancaire=" + carteBancaire + ", destination=" + destination + '}';
+        return "Client{" + "dateNaissance=" + dateNaissance + ", email=" + email + ", adresses=" + adresses + ", commandes=" + commandes + ", carteBancaire=" + carteBancaire + ", aeroport=" + aeroport + ", gare=" + gare + ", ville=" + ville + '}';
     }
 
+   
+    
+    
    
     
 }
